@@ -14,7 +14,7 @@ produces:
 paths:
   /status/{msisdn}:
     get:
-      description: Returns a user based on a single ID, if the user does not have access to the pet
+      description: Returns the roaming status of the customer. It will return true if the customer is on roaming at the time of API invocation. 
       produces:
         - application/json
       parameters:
