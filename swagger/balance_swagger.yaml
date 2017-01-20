@@ -1,0 +1,69 @@
+swagger: '2.0'
+info:
+  version: '1.0.0'
+  title: Balance Limit
+  description: Sets a minimum balance limit notification. When the users account balance reaches the set limit, a notification will be sent to the specified notify URL
+host: api.wso2telco.com
+basePath: /balance
+schemes:
+  - https
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /{msisdn}:
+    post:
+      description: Sets a minimum balance notification
+      produces:
+        - application/json
+      parameters:
+        - name: msisdn
+          in: path
+          description: The MSISDN of the end user. Number should be with tel          prefix. MSISDN should inlude country code. E.g. "tel:+94123456789"
+          required: true
+          type: string
+        - name: BalanceLimit
+          in: body
+          description: Specify the balance limit and notify URL
+          required: true
+          schema:
+            $ref: '#/definitions/balanceLimit'
+      responses:
+        201:
+          description: Balance limit set
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+      x-async-responses:
+        - eventId: limitReached
+          description: This event is triggerd when the user reaches the set balance limit
+          parameters:
+            - name: limitReached
+              in: body
+              required: true
+              type: boolean
+definitions:
+  balanceLimit:
+    type: object
+    required:
+      - limit
+      - notifyURL
+    properties:
+      limit:
+        type: integer
+        format: int64
+      notifyURL:
+        type: string
+  Error:
+    type: object
+    required:
+      - code
+      - message
+    properties:
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string

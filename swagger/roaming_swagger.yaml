@@ -1,0 +1,57 @@
+swagger: '2.0'
+info:
+  version: '1.0.0'
+  title: Roaming Status Check
+  description: Query the roaming status of the customer
+host: api.wso2telco.com
+basePath: /roaming
+schemes:
+  - https
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /status/{msisdn}:
+    get:
+      description: Returns a user based on a single ID, if the user does not have access to the pet
+      produces:
+        - application/json
+      parameters:
+        - name: msisdn
+          in: path
+          description: MSISDN of the end user.
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Roaming status of customer
+          schema:
+            $ref: '#/definitions/RoamingStatus'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+definitions:
+  RoamingStatus:
+    type: object
+    required:
+      - roaming
+    properties:
+      roaming:
+        type: boolean
+        description: Represents if the user is currectly roaming or not
+      roamingType:
+        type: string
+        description: Type of roaming customer is using. SMSR, VOICE, DATA, DEFAULT
+  Error:
+    type: object
+    required:
+      - code
+      - message
+    properties:
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string

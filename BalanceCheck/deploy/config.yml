@@ -1,0 +1,36 @@
+server:
+        applicationConnectors:
+          - type: http
+                # The port the application will listen on
+            port: 8181
+            bindHost: localhost
+        adminConnectors:
+          - type: http
+                # The admin port
+            port: 8282
+
+logging:
+  level: INFO
+  loggers:
+    io.dropwizard: INFO
+    com.wso2telco: DEBUG
+  appenders:
+    - type: console
+      threshold: ALL
+      timeZone: UTC
+      target: stdout
+# Enable following for file appender
+    - type: file
+      currentLogFilename: logs/BalanceCheck.log #<path to log file>/<filename.log>
+      threshold: ALL
+      archive: true
+      archivedLogFilenamePattern: logs/BalanceCheck-%d.log #<path to log file >/< archive filename.log>
+      archivedFileCount: 5
+      timeZone: UTC
+
+redis:
+  port: 6379
+  host: localhost
+  password: cY4L3dBf@mifenew
+  timeout: 2000
+  poolsize: 200
