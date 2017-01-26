@@ -5,11 +5,11 @@ Folder path:	/deploy/config.yml
 
 ### 1.0.1 Redis Configuration 
 
-port 		: redis port
-host 		: redis host
-password 	: redis password
-timeout 	: redis timeout
-poolsize 	: redis connection pool size
+ - port 		: redis port
+ - host 		: redis host
+ - password 	: redis password
+ - timeout 		: redis timeout
+ - poolsize 	: redis connection pool size
 
 ### 1.0.2 Server Configuration
 

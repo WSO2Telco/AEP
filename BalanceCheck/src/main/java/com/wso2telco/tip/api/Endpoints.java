@@ -22,6 +22,8 @@ public class Endpoints {
     public String setBalanceLimit(@PathParam("msisdn") String msisdn){
         if(log.isInfoEnabled())
             log.info("msisdn : " + msisdn);
+
+
         return msisdn;
     }
 }

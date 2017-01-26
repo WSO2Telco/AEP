@@ -34,3 +34,6 @@ redis:
   password: cY4L3dBf@mifenew
   timeout: 2000
   poolsize: 200
+
+remote:
+  url: http://www.google.com/

@@ -12,6 +12,9 @@ public class ApplicationConfiguration extends Configuration {
     @JsonProperty
     private Object redis;
 
+    /** The remote. */
+    @JsonProperty
+    private Object remote;
 
     /**
      * Gets the redis.
@@ -20,6 +23,15 @@ public class ApplicationConfiguration extends Configuration {
      */
     public Object getRedis() {
         return redis;
+    }
+
+    /**
+     * Gets the remote.
+     *
+     * @return the remote
+     */
+    public Object getRemote() {
+        return remote;
     }
 
 }
