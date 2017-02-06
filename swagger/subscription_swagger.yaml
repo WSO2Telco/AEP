@@ -1,0 +1,157 @@
+swagger: '2.0'
+info:
+  version: '1.0.0'
+  title: Subscription API
+  description: A generic API to handle subscriptions.
+host: wso2telco_tip_ip
+basePath: /subscription
+schemes:
+  - https
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /{msisdn}/{subscriptionType}:
+    post:
+      description: Sets a subscription notification
+      produces:
+        - application/json
+      parameters:
+        - name: msisdn
+          in: path
+          description: The MSISDN of the end user. Number should be with tel          prefix. MSISDN should inlude country code. E.g. "tel:+94123456789"
+          required: true
+          type: string
+        - name: subscriptionType
+          in: path
+          description: Subscription Type. Should be a String Value. E.g. balance, payment, refund etc.
+          required: true
+          type: string
+        - name: Subscription Body
+          in: body
+          description: Specify the subscription based api related parameters
+          required: true
+          schema:
+            $ref: "#/definitions/tags"
+      responses:
+        201:
+          description: SUbscription is set
+          schema:
+            $ref: '#/definitions/subscriptionRef'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    delete:
+      description: Delete a subscription notification
+      produces:
+        - application/json
+      parameters:
+        - name: msisdn
+          in: path
+          description: The MSISDN of the end user. Number should be with tel          prefix. MSISDN should inlude country code. E.g. "tel:+94123456789"
+          required: true
+          type: string
+        - name: subscriptionType
+          in: path
+          description: Subscription Type. Should be a String Value. E.g. balance, payment, refund etc.
+          required: true
+          type: string
+        - name: Subscription Body
+          in: body
+          description: Specify the subscription based api related parameters
+          required: true
+          schema:
+            $ref: '#/definitions/subscriptionRef'
+      responses:
+        200:
+          description: Subscription is deleted
+          schema:
+            $ref: '#/definitions/subscriptionRef'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+
+    get:
+      description: query a balance notification
+      produces:
+        - application/json
+      parameters:
+        - name: msisdn
+          in: path
+          description: The MSISDN of the end user. Number should be with tel          prefix. MSISDN should inlude country code. E.g. "tel:+94123456789"
+          required: true
+          type: string
+        - name: subscriptionType
+          in: path
+          description: The MSISDN of the end user. Number should be with tel          prefix. MSISDN should inlude country code. E.g. "tel:+94123456789"
+          required: true
+          type: string
+      responses:
+        200:
+          description: Balance limit query
+          schema:
+            $ref: '#/definitions/tags'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+      x-async-responses:
+        - eventId: subscriptionEventTriggered
+          description: This event is triggerd when a particular subscription event is occured
+          parameters:
+            - name: refnumber
+              in: body
+              required: true
+              type: string
+            - name: msisdn
+              in: body
+              required: true
+              type: string
+            - schema:
+                $ref: "#/definitions/tags"
+            - name: trigger_type
+              in: body
+              required: true
+              type: string
+        
+        
+
+definitions:
+  subscriptionRef:
+    type: object
+    required:
+      - refnumber
+    properties:
+      refnumber:
+        type: integer
+        format: int64
+  Error:
+    type: object
+    required:
+      - code
+      - message
+    properties:
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string
+  tags:
+        type: array
+        items:
+          $ref: "#/definitions/tag"
+  tag:
+    type: object
+    properties:
+      tag:
+        type: string
+      value:
+        type: string
+        
+        
+        
+        
+        

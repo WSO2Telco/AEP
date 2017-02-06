@@ -35,5 +35,9 @@ redis:
   timeout: 2000
   poolsize: 200
 
+callback:
+  balanceUp: http://www.wso2telco.com/
+  balanceDown: http://www.wso2telco.com/
+
 remote:
-  url: http://www.google.com/
+  url: http://www.wso2telco.com/{msisdn}

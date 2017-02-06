@@ -28,11 +28,29 @@
             <artifactId>jedis</artifactId>
             <version>${jedis.version}</version>
         </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>RELEASE</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>${json.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>${httpclient.version}</version>
+        </dependency>
     </dependencies>
     <properties>
         <dropwizard.swagger.version>0.6</dropwizard.swagger.version>
         <dropwizard.version>1.0.5</dropwizard.version>
         <jedis.version>2.7.3</jedis.version>
+        <json.version>20160810</json.version>
+        <httpclient.version>4.5.2</httpclient.version>
     </properties>
     <build>
         <plugins>

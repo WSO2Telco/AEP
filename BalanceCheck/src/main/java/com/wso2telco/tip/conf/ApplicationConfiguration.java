@@ -16,6 +16,10 @@ public class ApplicationConfiguration extends Configuration {
     @JsonProperty
     private Object remote;
 
+    /** The callback. */
+    @JsonProperty
+    private Object callback;
+
     /**
      * Gets the redis.
      *
@@ -32,6 +36,15 @@ public class ApplicationConfiguration extends Configuration {
      */
     public Object getRemote() {
         return remote;
+    }
+
+    /**
+     * Gets the callback.
+     *
+     * @return the callback
+     */
+    public Object getCallback() {
+        return callback;
     }
 
 }
