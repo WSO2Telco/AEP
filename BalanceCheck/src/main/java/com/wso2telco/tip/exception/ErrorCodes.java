@@ -9,7 +9,8 @@ public enum ErrorCodes {
     JSON_PROCESSING_ERROR ("Json Processing Error", 501),
     INPUT_ERROR ("Input Error", 502),
     URL_FORMAT_ERROR ("URL format error",503),
-    IO_EXCEPTION ("IO exception",504);
+    IO_EXCEPTION ("IO exception",504),
+    MSISDN_FORMAT_ERROR ("Invalid MSISDN format",505);
 
     private String code;
     private int key;

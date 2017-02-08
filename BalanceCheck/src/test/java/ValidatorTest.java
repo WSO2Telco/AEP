@@ -17,4 +17,23 @@ public class ValidatorTest {
         assertFalse("InValid Number 91123456789",Validator.validateMsisdn("91123456789"));
         assertFalse("InValid Number tl:+91123456789",Validator.validateMsisdn("tl:+91123456789"));
     }
+
+    @Test
+    public void urlTest(){
+        assertTrue("Valid url http://www.google.com",Validator.validateUrl("http://www.google.com"));
+        assertTrue("Valid url http://www.google.com/test",Validator.validateUrl("http://www.google.com/test"));
+        assertTrue("Valid url http://192.168.1.2/test",Validator.validateUrl("http://192.168.1.2/test"));
+        assertTrue("Valid url http://192.168.1.2:8080/test",Validator.validateUrl("http://192.168.1.2:8080/test"));
+        assertTrue("Valid url 192.168.1.2:8080/test",Validator.validateUrl("192.168.1.2:8080/test"));
+        assertTrue("Valid url www.google.com/test",Validator.validateUrl("www.google.com/test"));
+        assertTrue("Valid url https://www.google.com",Validator.validateUrl("https://www.google.com"));
+        assertTrue("Valid url 192.168.1.2",Validator.validateUrl("192.168.1.2"));
+        assertTrue("Valid url 192.168.1.2:8080",Validator.validateUrl("192.168.1.2:8080"));
+        assertTrue("Valid url google.com",Validator.validateUrl("google.com"));
+
+        assertFalse("InValid url tcp://www.google.com/",Validator.validateUrl("tcp://www.google.com/"));
+        assertFalse("InValid url 12345",Validator.validateUrl("12345"));
+
+    }
+
 }

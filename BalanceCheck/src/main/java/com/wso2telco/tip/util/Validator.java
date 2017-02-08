@@ -1,5 +1,7 @@
 package com.wso2telco.tip.util;
 
+import org.apache.commons.validator.routines.UrlValidator;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -14,5 +16,14 @@ public class Validator {
     public static boolean validateMsisdn(String msisdn){
         Matcher matcher = VALID_MSISDN_PATTERN.matcher(msisdn);
         return matcher.find();
+    }
+
+    public static boolean validateUrl(String url){
+        if(!url.startsWith("http")){
+            url = "http://" + url;
+        }
+        String[] schemes = {"http","https"};
+        UrlValidator urlValidator = new UrlValidator(schemes);
+        return urlValidator.isValid(url);
     }
 }

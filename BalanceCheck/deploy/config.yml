@@ -3,7 +3,7 @@ server:
           - type: http
                 # The port the application will listen on
             port: 8181
-            bindHost: localhost
+            bindHost: 0.0.0.0
         adminConnectors:
           - type: http
                 # The admin port
@@ -36,8 +36,8 @@ redis:
   poolsize: 200
 
 callback:
-  balanceUp: http://www.wso2telco.com/
-  balanceDown: http://www.wso2telco.com/
+  balanceUp: http://aep.wso2telco.com/balance/callback/up
+  balanceDown: http://aep.wso2telco.com/balance/callback/down
 
 remote:
-  url: http://www.wso2telco.com/{msisdn}
+  url: http://api.dialog.com/{msisdn}

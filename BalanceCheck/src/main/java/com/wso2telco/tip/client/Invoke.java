@@ -17,6 +17,7 @@ import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
 import java.io.IOException;
 import java.net.URI;
@@ -150,6 +151,50 @@ public class Invoke {
             throw new BalanceCheckException(ErrorCodes.IO_EXCEPTION.getCode());
         }
         return jsonResponse;
+    }
+
+
+    /**
+     refnumber
+     msisdn
+     BalanceLimit
+     trigger_type [balance_up, balance_down, subscription_delete]
+     */
+    public void invokeCallBack(String reference, String msisdn, String balanceLimit, String triggerType, String notifyUrl) throws BalanceCheckException {
+        JSONObject requestJson = new JSONObject();
+        requestJson.put("refnumber", reference);
+        requestJson.put("msisdn", msisdn);
+        requestJson.put("BalanceLimit", balanceLimit);
+        requestJson.put("trigger_type", triggerType);
+
+        if (log.isDebugEnabled()) {
+            log.debug("Request JSON : " + requestJson.toString());
+            log.debug("Remote Call URL : " + notifyUrl);
+        }
+
+        URI callUrl  = UriBuilder.fromPath(notifyUrl).build();
+
+        HttpClient client = HttpClientBuilder.create().build();
+        HttpPost post = new HttpPost(callUrl);
+        HttpResponse response;
+
+        StringEntity stringEntity = new StringEntity(requestJson.toString(), ContentType.APPLICATION_JSON);
+        post.setEntity(stringEntity);
+        post.setHeader("Content-type", "application/json");
+
+        try {
+            response = client.execute(post);
+            String responseString = EntityUtils.toString(response.getEntity());
+
+            if(log.isDebugEnabled()){
+                log.debug("Response Code : " + response.getStatusLine().getStatusCode());
+                log.debug("JSON Response : " + responseString);
+            }
+        } catch (IOException e) {
+            log.error("IO exception while calling remote URL : " + callUrl);
+            log.error("IO exception while calling remote URL : " , e);
+            throw new BalanceCheckException(ErrorCodes.IO_EXCEPTION.getCode() , e);
+        }
     }
 
     @NotThreadSafe
