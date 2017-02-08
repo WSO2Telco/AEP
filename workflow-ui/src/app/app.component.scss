@@ -1,0 +1,101 @@
+@import "../styles/varibles";
+@import "../styles/mixing";
+@import "../styles/colors";
+
+:host{
+  min-height:100%;
+  background-color: #f5f5f5;
+  min-width: 300px;
+}
+
+:host /deep/ ng2-toasty .toast{
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+
+
+  -webkit-animation-name: bounceInUp;
+  -moz-animation-name: bounceInUp;
+  -o-animation-name: bounceInUp;
+  animation-name: bounceInUp;
+}
+
+router-outlet{
+  display: block;
+
+  @media screen and (max-width: 768px) {
+    padding-top: 40px;
+  }
+}
+
+ng2-slim-loading-bar{
+  position: fixed;
+  top: $topbar-height;
+  z-index: 500;
+  left: 0px;
+  right: 0px;
+}
+
+:host /deep/ ng2-slim-loading-bar .slim-loading-bar-progress{
+  background-color: $accent-color !important;
+  height: 4px !important;
+}
+
+.container-fluid{
+  height: 100%;
+}
+
+.content-container{
+  margin-left: -15px;
+  margin-right: -15px;
+  position: relative;
+  margin-top: $topbar-height;
+  @media screen and (max-width: 768px) {
+    margin-top: $topbar-height * 2;
+  }
+}
+
+.menu-container{
+  position: fixed;
+  top: $topbar-height;
+  bottom: 0px;
+  left: 0px;
+  z-index:100;
+
+  @media screen and (max-width: 768px) {
+    top: $topbar-height * 2;
+  }
+}
+
+.view-container{
+  @include transition(margin-left 0.8s ease-in-out);
+  margin-left: $main-menu-default-width;
+
+  &.menu-expand{
+    animation-delay: 0.5s;
+    margin-left: $main-menu-expanded-width;
+  }
+
+  .breadcrumbs-bar{
+    border-bottom: inset 1px $gray_light;
+    border-radius: 0px;
+    height: $main-breadcrumbs-height;
+    line-height: 2.2em;
+    background-color: white;
+    position: fixed;
+    z-index: 100;
+    left: $main-menu-default-width;
+    right: 0px;
+    min-width: $app-min-width - $main-menu-default-width;
+    @include transition(width 0.3s ease-in-out);
+
+    &.menu-expand{
+      left: $main-menu-expanded-width;
+    }
+  }
+
+  .content-div{
+    margin-top: 40px;
+  }
+}

@@ -1,0 +1,164 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "colors";
+@import "form-controlls";
+@import "animations";
+@import "bootstrap_overides";
+@import "mixing";
+
+html,body{
+  width: 100%;
+  left: 0;
+  top: 0;
+  bottom:0;
+}
+
+body *{
+  font-family: 'Open Sans', sans-serif;
+}
+
+input,button{
+  border-radius: 0!important;
+}
+
+.form-control{
+  box-shadow: none!important;
+  outline: 0!important;
+  padding: 6px 12px;
+  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+
+  &:focus{
+    border: 1px solid #c3ccda;
+  }
+}
+
+
+.spinner-container{
+  margin-top: 50%;
+  min-height: 100%;
+
+  .spinner{
+    margin: auto;
+    width: 50px;
+    height: 40px;
+    text-align: center;
+    font-size: 10px;
+    position: absolute;
+    left: 50%;
+    top: 45%;
+    margin-left: -25px;
+
+    &>div{
+      background-color: $accent-color;
+    }
+  }
+}
+
+.more{
+  background-color: $accent-color;
+  display: inline-block;
+  padding: 5px 15px;
+  color: white;
+  font-weight: 900;
+  font-size: 0.9em;
+  cursor: pointer;
+  @include transition(all 0.2s ease-in);
+
+  &:hover{
+    background-color: #E37F35;
+    color: $gray_lighter;
+  }
+}
+
+.pad-r-15-im{
+  padding-right: 15px !important;
+}
+
+ma-b-15{
+  margin-bottom: 15px;
+}
+
+ma-b-20{
+  margin-bottom: 20px;
+}
+
+.delay-02{
+  -webkit-animation-delay: 0.2s;
+  -moz-animation-delay: 0.2s;
+  -o-animation-delay: 0.2s;
+  animation-delay: 0.2s;
+}
+
+.delay-03{
+  -webkit-animation-delay: 0.3s;
+  -moz-animation-delay: 0.3s;
+  -o-animation-delay: 0.3s;
+  animation-delay: 0.3s;
+}
+
+.delay-half{
+  -webkit-animation-delay: 0.5s;
+  -moz-animation-delay: 0.5s;
+  -o-animation-delay: 0.5s;
+  animation-delay: 0.5s;
+}
+
+
+.delay-1{
+  -webkit-animation-delay: 1s;
+  -moz-animation-delay: 1s;
+  -o-animation-delay: 1s;
+  animation-delay: 1s;
+}
+
+.delay-2{
+  -webkit-animation-delay: 2s;
+  -moz-animation-delay: 2s;
+  -o-animation-delay: 2s;
+  animation-delay: 2s;
+}
+
+
+#toasty {
+  .toast{
+    width: 350px;
+    opacity: 1;
+    &.toasty-theme-material{
+
+      &.toasty-type-error{
+        background-color: $error-red;
+        color: white;
+      }
+
+      &.toasty-type-success{
+        background-color: $success;
+        color: white;
+      }
+
+      &.toasty-type-warning{
+        background-color: $warning;
+        color: white;
+      }
+
+    }
+
+  }
+}
+
+.tooltip-inner{
+  padding: 5px 10px;
+  color: #fff;
+  background-color: $primary-color_light;
+  border-radius: 0px;
+}
+
+.tooltip.top{
+  min-width: 120px;
+}
+
+.tooltip.top .tooltip-arrow{
+  border-top-color: $primary-color_light;
+}
+
+
+

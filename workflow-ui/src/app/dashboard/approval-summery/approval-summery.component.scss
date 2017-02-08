@@ -1,0 +1,42 @@
+@import "../../../styles/mixing";
+
+:host{
+  display: block;
+
+  @media screen and (max-width: 768px) {
+    padding: 0px 15px;
+    display: block;
+  }
+}
+
+app-approval-count{
+  margin-top: 20px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+:host /deep/ app-approval-count.apps .approval-count{
+  background-color: #3598dc;
+  @include transition(all 0.2s ease-in);
+  &:hover{
+    background-color: #2f87c4;
+  }
+
+  .breakdown{
+    color : #a7d8fa;
+  }
+}
+
+:host /deep/ app-approval-count.subs .approval-count{
+  background-color: #8E44AD;
+
+  @include transition(all 0.2s ease-in);
+  &:hover{
+    background-color: #703588;
+  }
+
+  .breakdown{
+    color: #fb9db1;
+  }
+;
+}

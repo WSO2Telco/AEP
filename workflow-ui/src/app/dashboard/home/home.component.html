@@ -1,0 +1,67 @@
+<div class="animated fadeInUp" style="animation-delay: 0.3s">
+
+  <div class="row">
+    <div class="col-lg-6">
+      <app-approval-summery [appDetailsSummery]="dashboardData"></app-approval-summery>
+    </div>
+    <div class="col-lg-6">
+      <app-approval-history-graph></app-approval-history-graph>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <application-data-table
+              class="my"
+              [filter]="myApplicationFilter"
+              [summeryModeRecordLimit]="5"
+              moreLinkPath="/approvals/applications"
+              tableTitle="APPLICATION CREATIONS"
+              [dataSource]="myApplications"
+              (onApproveRejectTask)="onApproveRejectHandler($event)"
+              (onFilterChange)="onFilterChangeHandler($event)"
+      ></application-data-table>
+    </div>
+
+    <div class="col-md-6">
+      <application-data-table
+              class="my"
+              [summeryModeRecordLimit]="5"
+              moreLinkPath="/approvals/subscriptions"
+              [filter]="mySubscriptionFilter"
+              tableTitle="SUBSCRIPTION CREATIONS"
+              [dataSource]="myAppSubscriptionTask"
+              (onApproveRejectTask)="onApproveRejectHandler($event)"
+              (onFilterChange)="onFilterChangeHandler($event)"
+      ></application-data-table>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-md-6">
+      <application-data-table
+              [filter]="groupApplicationFilter"
+              [summeryModeRecordLimit]="5"
+              moreLinkPath="/approvals/applications"
+              tableTitle="APPLICATION CREATIONS"
+              [dataSource]="allApplications"
+              (onAssignTask)="onAssignTaskHandler($event)"
+              (onFilterChange)="onFilterChangeHandler($event)"></application-data-table>
+    </div>
+
+    <div class="col-md-6">
+      <application-data-table
+              [filter]="groupSubscriptionFilter"
+              [summeryModeRecordLimit]="5"
+              moreLinkPath="/approvals/subscriptions"
+              tableTitle="SUBSCRIPTION CREATIONS"
+              [dataSource]="allSubscriptions"
+              (onAssignTask)="onAssignTaskHandler($event)"
+              (onFilterChange)="onFilterChangeHandler($event)"></application-data-table>
+    </div>
+  </div>
+
+
+</div>
+

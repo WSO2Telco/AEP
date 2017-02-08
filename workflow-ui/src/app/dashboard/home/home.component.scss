@@ -1,0 +1,26 @@
+@import "../../../styles/colors";
+
+app-approval-history-graph{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+application-data-table{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+
+:host /deep/ application-data-table.my {
+  .tbl-header{
+    color: $accent-color;
+    font-weight: 900;
+  }
+
+  .header{
+    background-color: $accent-color !important;
+  }
+
+}
+
+

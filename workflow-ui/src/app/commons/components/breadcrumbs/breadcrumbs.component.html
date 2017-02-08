@@ -1,0 +1,9 @@
+<div>
+    <div>
+        <span class="url-part" *ngFor="let path of activeView">{{path}}</span>
+    </div>
+    <span class="animated bounceInDown delay-1 refresh-icon glyphicon glyphicon-refresh"
+          tooltip="Reload"
+          placement="bottom"
+          (click)="onReload()"></span>
+</div>

@@ -1,0 +1,28 @@
+<div class="avatar-component"
+     (click)="onClick()"
+     [ngClass]="{'expand':dropDownStatus.isOpen}"
+     dropdown
+     [isOpen]="dropDownStatus.isOpen">
+  <div>
+    <div class="avatar" dropdownToggle>
+      <span class="glyphicon glyphicon-user"></span>
+    </div>
+  </div>
+  <div class="userName">{{loginInfo.userName}}</div>
+  <div>
+    <span class="glyphicon arrow" [ngClass]="{'glyphicon-chevron-up':dropDownStatus.isOpen,'glyphicon-chevron-down':!dropDownStatus.isOpen}"></span>
+  </div>
+
+  <ul class="dropdown-menu avatar-dropdown animated fadeIn" dropdownMenu aria-labelledby="simple-dropdown">
+    <li>
+      <a class="dropdown-item" href="#">My Profile</a>
+    </li>
+    <li>
+      <a class="dropdown-item" href="#">My Assignments</a>
+    </li>
+    <li>
+      <a class="dropdown-item" href="" (click)="onMenuClick('logout')">Logout</a>
+    </li>
+  </ul>
+
+</div>

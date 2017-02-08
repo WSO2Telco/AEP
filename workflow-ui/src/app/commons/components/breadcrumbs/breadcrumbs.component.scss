@@ -1,0 +1,47 @@
+@import "../../../../styles/colors";
+@import "../../../../styles/mixing";
+
+:host {
+  line-height: 5rem;
+  position: relative;
+  display: block;
+}
+
+.url-part{
+  display: inline-block;
+  padding-right: 10px;
+  font-size: 1.3em;
+  font-weight: 300;
+  text-transform: capitalize;
+
+  &:last-child{
+    font-weight: 900;
+    text-transform: uppercase;
+  }
+}
+
+.refresh-icon {
+  position: absolute;
+  right: 50px;
+  height: 30px;
+  width: 30px;
+  background-color: $accent-color;
+  text-align: center;
+  line-height: 30px;
+  border-radius: 20px;
+  color: white;
+  font-size: 1em;
+  margin-top: 6px;
+  cursor: pointer;
+
+  @media screen and (max-width: 768px) {
+    right: 0px;
+  }
+
+  @include transition(all 0.2s ease-in);
+
+  &:hover{
+    background-color: $accent-light-color;
+    color: black;
+  }
+}

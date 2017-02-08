@@ -1,0 +1,26 @@
+{
+  "name": "workflow-manager-ui",
+  "version": "0.0.0",
+  "license": "MIT",
+  "scripts": {
+    "start": "node server/index.js"
+  },
+  "private": true,
+  "dependencies": {
+    "boom": "^4.2.0",
+    "core-js": "^2.4.1",
+    "glue": "^4.1.0",
+    "good": "^7.1.0",
+    "good-console": "^6.2.0",
+    "h2o2": "^5.4.0",
+    "hapi": "^16.1.0",
+    "inert": "^4.1.0",
+    "moment": "^2.17.1",
+    "q": "^1.4.1",
+    "rxjs": "^5.0.1",
+    "wreck": "^10.0.0",
+    "xml2js": "^0.4.17"
+  },
+  "devDependencies": {
+  }
+}

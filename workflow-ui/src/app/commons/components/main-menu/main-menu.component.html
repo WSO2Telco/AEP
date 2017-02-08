@@ -1,0 +1,7 @@
+<ul [ngClass]="{'is-expand':isExpand}">
+  <li  *ngFor="let menu of menuSource"
+       (click)="onClick(menu)"
+  [ngClass]="{'selected':menu.id==selectedMenu?.id}"><span class="icon material-icons">{{menu.iconName}}</span>
+  <span class="menu-name animated fadeIn" *ngIf="isExpand">{{menu.name}}</span>
+  </li>
+ </ul>

@@ -1,0 +1,88 @@
+@import "../../../../styles/colors";
+@import "../../../../styles/mixing";
+
+:host{
+  height: 50px;
+  display: block;
+  background-color: $primary-color_main;
+  @include transition(all 0.3s ease-in);
+  color: $gray;
+  cursor: pointer;
+
+  &:hover{
+    color: white;
+  }
+
+}
+
+.avatar-component{
+  height: 100%;
+
+ /* &.expand{
+    background-color: $primary-color_light;
+  }*/
+
+  .avatar-dropdown{
+    margin-top: 12px;
+    @media screen and (max-width: 768px) {
+      width: 100%;
+      margin-top: 32px;
+    }
+  }
+
+  &:before{
+    content: "";
+    display: inline-block;
+    vertical-align: middle;
+    height: 100%;
+  }
+
+  &>div{
+    display: inline-block;
+    vertical-align: middle;
+    padding : 5px;
+
+    &:first-child{
+      padding-right: 2px;
+    }
+  }
+
+  .avatar{
+    width: 30px;
+    height: 30px;
+    border: solid 1px $gray;
+    border-radius: 15px;
+    text-align: center;
+    padding-top: 3px;
+  }
+
+  .arrow{
+    font-size: 0.8em;
+    padding-right: 15px;
+  }
+}
+
+.avatar-dropdown{
+  min-width: 250px;
+  padding: 0px;
+
+    li{
+      height : 35px;
+      border-bottom: solid 1px $white_dark;
+
+      a{
+        height: 35px;
+        line-height: 27px;
+        @include transition(background-color 0.2s ease-in);
+        &:hover{
+          background-color: $secondary_color;
+        }
+      }
+
+    }
+}
+
+.userName{
+  text-transform: capitalize;
+}
+

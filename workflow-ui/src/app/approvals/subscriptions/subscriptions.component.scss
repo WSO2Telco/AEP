@@ -1,0 +1,16 @@
+@import "../../../styles/colors";
+
+application-data-table{
+  margin-top: 20px;
+}
+
+:host /deep/ application-data-table.my {
+  .tbl-header{
+    color: $accent-color;
+    font-weight: 900;
+  }
+
+  .header{
+    background-color: $accent-color !important;
+  }
+}

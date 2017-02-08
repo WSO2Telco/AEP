@@ -1,0 +1,66 @@
+@import "colors";
+
+.popover{
+  border-radius: 0px;
+
+  .popover-arrow{
+    display: none;
+  }
+  &.bottom{
+    margin-top: 3px;
+  }
+
+  .popover-content{
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+
+
+.dropdown-menu{
+  border-radius: 0px;
+  box-shadow: none;
+}
+
+
+.form-control{
+  border-radius: 0px;
+}
+
+.btn{
+  margin-top: 1px;
+  font-weight: 600;
+  outline: 0;
+  box-shadow: none;
+}
+
+.btn-primary{
+  background-color: $secondary_color;
+  border-color: #29A2AD;
+
+  &:hover{
+    background-color: $primary-color_light;
+  }
+}
+
+.pagination{
+
+  a{
+    color: $gray_5 !important;
+  }
+
+  &>li:first-child>a,&>li:last-child>a{
+    border-radius: 0px;
+  }
+}
+
+.pagination>.active>a,
+.pagination>.active>a:focus,
+.pagination>.active>a:hover,
+.pagination>.active>span,
+.pagination>.active>span:focus,
+.pagination>.active>span:hover{
+  background-color: $accent-color;
+  border-color: $accent-dark-color;
+  color: white !important;
+}

@@ -1,0 +1,72 @@
+@import "../../../../styles/colors";
+@import "../../../../styles/varibles";
+
+.navbar{
+  background-color: $primary-color_main;
+  border : 0;
+  border-radius: 0px;
+  margin-bottom: 0px;
+  z-index: 200;
+  height: $topbar-height;
+
+  .container-fluid{
+    padding: 10px 35px 10px 15px;
+    min-width: $app-min-width;
+  }
+
+  @media screen and (max-width: 768px) {
+    height: $topbar-height * 2;
+  }
+}
+
+.navbar-header{
+  @media screen and (max-width: 768px) {
+   margin-left: 0px;
+   margin-right: 0px;
+  }
+}
+
+.navbar-right{
+  @media screen and (max-width: 768px) {
+   margin-left: 15px;
+  }
+}
+
+.navbar-brand{
+  float: right;
+  padding-left: 25px;
+  font-size: 1.6rem;
+  color: $accent-color;
+  position: relative;
+
+  .logo,.name{
+    float: left;
+  }
+
+  .logo{
+    top: 0px;
+    img{
+      height: 30px;
+      margin-top: -6px;
+    }
+  }
+
+  .name{
+    margin-left: 10px;
+  }
+
+  &:hover,&:focus,&:active{
+    color: $accent-color;
+  }
+
+  .man {
+    color: #8A98A0;
+    font-weight: 600;
+    display: inline-block;
+    margin-top: 4px;
+  }
+}
+
+app-hamburger-menu{
+  float: left;
+}

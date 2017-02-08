@@ -1,0 +1,100 @@
+@import "../../../styles/colors";
+@import "../../../styles/mixing";
+
+.login-container {
+  width: 400px;
+  margin: 75px auto;
+
+  input {
+    background-color: #dde3ec;
+    height: 43px;
+    color: #8290a3;
+    border: 1px solid #dde3ec;
+
+    &:focus{
+      border: 1px solid #c3ccda;
+    }
+  }
+
+  input.ng-invalid {
+    // border : solid 2px #c8110d;
+  }
+
+  .logo-container {
+    margin-bottom: 35px;
+    text-align: center;
+    font-size: 2.5rem;
+    color: $accent-color;
+    .man {
+      color: #8A98A0;
+      font-weight: 300;
+    }
+  }
+
+  .form-container {
+    background-color: white;
+    box-shadow: 0px 0px 20px 3px #e6e5e5;
+
+    .form-fields{
+      padding: 20px 30px;
+    }
+
+    .sign-in {
+      margin: 0px;
+      padding: 30px 0px 10px;
+      text-align: center;
+      color: $secondary_color
+    }
+
+    .forgot-ps{
+      padding: 15px 30px 20px;
+      border-top: solid 1px #dde3ec;
+      text-align: right;
+      color: $gray-dark;
+    }
+  }
+
+  .action-container{
+    margin: 35px 0px 10px;
+
+    .login{
+      background-color: $secondary_color;
+      color: white;
+      font-weight: 600;
+      @include transition(all 0.4 ease-in);
+
+      &:hover{
+        background-color :#289DA7;
+      }
+    }
+
+    .checkbox-lbl{
+      margin-left: 10px;
+    }
+  }
+
+  .copyright {
+    text-align: center;
+    margin: 0 auto 30px 0;
+    padding: 10px;
+    color: $gray-dark;
+    font-size: 13px;
+  }
+
+  .error{
+    font-size: 0.9em;
+    color: #f96565;
+  }
+
+  .error-container{
+    min-height: 50px;
+    background-color: $error-red;
+    color: white;
+    text-align: center;
+    padding: 20px 10px;
+
+  }
+
+}
+
+

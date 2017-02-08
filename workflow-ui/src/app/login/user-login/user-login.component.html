@@ -1,0 +1,63 @@
+<div class="login-container animated fadeInDown">
+
+  <div class="logo-container">
+   WORKFLOW<span class="man">MANAGER</span>
+  </div>
+
+  <!--Form Container - START-->
+  <div class="form-container">
+    <h3 class="sign-in">Sign In</h3>
+    <!--login form START-->
+    <form #loginForm="ngForm" novalidate (ngSubmit)="onLoginClick(loginForm)" >
+      <div class="form-fields">
+        <div class="form-group">
+          <input class="form-control"
+                 type="text"
+                 autocomplete="off"
+                 placeholder="Username"
+                 name="userName"
+                 #userNameRef="ngModel"
+                 required
+                 [(ngModel)]="userName">
+          <span class="error" *ngIf="userNameRef.errors?.required && (userNameRef.dirty || isSubmitted)" >User name can not be empty</span>
+        </div>
+
+        <div class="form-group">
+          <input class="form-control"
+                 type="password"
+                 autocomplete="off"
+                 placeholder="Password"
+                 name="password"
+                 #passwordRef="ngModel"
+                 required
+                 [(ngModel)]="password">
+          <span class="error" *ngIf="passwordRef.errors?.required && (passwordRef.dirty || isSubmitted)">Password can not be empty</span>
+        </div>
+
+        <div class="action-container">
+          <button class="btn login" >LOGIN</button>
+          <label class="checkbox-lbl">
+            <input type="checkbox">
+            Remember
+            <span></span>
+          </label>
+
+
+        </div>
+      </div>
+
+      <div class="forgot-ps" >forgot password</div>
+
+
+    </form> <!--login form END-->
+
+  </div><!--Form Container - END-->
+
+  <div  class="copyright">  ©2017 WSO2Telco. Workflow Manager. </div>
+
+  <div class="error-container animated bounceIn" *ngIf="loginError">{{loginError}}</div>
+
+</div>
+
+
+

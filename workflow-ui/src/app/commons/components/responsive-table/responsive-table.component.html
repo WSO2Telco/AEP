@@ -1,0 +1,16 @@
+<div class="table-wrapper">
+  <div class="tbl-header">
+    {{tableHeader}}
+  </div>
+  <div class="table">
+
+    <div class="tbl-row header">
+      <div class="tbl-cell" *ngFor="let field of fieldSet">{{field}}</div>
+    </div>
+
+    <div class="tbl-row" *ngFor="let item of dataSource">
+      <div class="tbl-cell" *ngFor="let field of fieldSet">{{item[field]}}</div>
+    </div>
+
+  </div>
+</div>

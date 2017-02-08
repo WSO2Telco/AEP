@@ -1,0 +1,84 @@
+@import "../../../../styles/colors";
+@import "../../../../styles/mixing";
+@import "../../../../styles/varibles";
+
+
+:host{
+  display: block;
+  background-color: $primary-color_menu;
+  height: 100%;
+}
+
+ul{
+  list-style: none;
+  padding: 0px;
+  width: $main-menu-default-width;
+  @include transition(width 0.3s ease-in-out);
+
+  li{
+    cursor: pointer;
+    width: 100%;
+    height: $main-menu-icon-height;
+    border-bottom: solid 1px $primary-color_light;
+    position: relative;
+    @include transition(all 0.3s ease-in);
+
+    &:hover{
+      background-color:$primary-color_main ;
+    }
+
+    &:after{
+      content: '';
+      width: 0px;
+      height: 0px;
+      border-right: solid 8px #f5f5f5;
+      border-top: solid 10px transparent;
+      border-bottom: solid 10px transparent;
+      position: absolute;
+      right: 0px;
+      top : 14px;
+      display: none;
+    }
+
+    .icon{
+      display: inline-block;
+      text-align: center;
+      width: 100%;
+      line-height: $main-menu-icon-height;
+      color : #adadad;
+      font-size: 1.6em;
+    }
+
+    .menu-name{
+      -webkit-animation-delay: 0.3s;
+      -moz-animation-delay: 0.3s;
+      -o-animation-delay: 0.3s;
+      animation-delay: 0.3s;
+      color : #afafaf;
+    }
+
+    &.selected{
+      background-color: $secondary_color;
+      .icon{
+        color:white;
+      }
+      .menu-name{
+        color : white;
+      }
+
+      &:after{
+        display: block;
+      }
+    }
+  }
+
+  &.is-expand{
+    width: $main-menu-expanded-width;
+
+    li{
+      .icon {
+        width : 50px;
+      }
+    }
+  }
+}

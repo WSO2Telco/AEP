@@ -1,0 +1,26 @@
+@import "../../../styles/colors";
+
+:host {
+  display: block;
+}
+
+.history-filter {
+  min-height: 100px;
+  padding: 10px;
+  background-color: white;
+  border: solid 1px whitesmoke;
+
+  .fields-container{
+    div[class^="col-"]{
+      padding-bottom: 10px;
+    }
+  }
+
+  .title{
+    font-size: 1.2em;
+    font-weight: 600;
+    color: gray;
+    padding-bottom: 5px;
+  }
+}
+

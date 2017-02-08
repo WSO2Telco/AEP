@@ -1,0 +1,41 @@
+<div class="history-filter">
+
+   <div class="row fields-container">
+      <div class="col-sm-3">
+         <input type="text" class="form-control"
+                [(ngModel)]="filter.subscriber"
+                [typeaheadMinLength]="0"
+                [typeahead]="subscribers"
+                (typeaheadNoResults)="onNoSubscriberSelected($event)"
+                (typeaheadOnSelect)="onSubscriberChange()"
+                placeholder="Service Provider">
+      </div>
+       <div class="col-sm-3">
+           <input type="text" class="form-control"
+                  [(ngModel)]="selectedApplication"
+                  [typeaheadMinLength]="0"
+                  typeaheadOptionField="name"
+                  [typeahead]="applications"
+                  (typeaheadOnSelect)="onApplicationChange($event)"
+                  (typeaheadNoResults)="onNoApplicationSelected($event)"
+                  placeholder="Application">
+       </div>
+       <div class="col-sm-3">
+           <input type="text" class="form-control"
+                  [(ngModel)]="filter.operator"
+                  [typeaheadMinLength]="0"
+                  [typeahead]="operators"
+                  (typeaheadOnSelect)="onOperatorChange()"
+                  placeholder="Operator">
+       </div>
+       <div class="col-sm-3">
+           <input type="text" class="form-control" placeholder="Status">
+       </div>
+   </div>
+    <div class="row">
+        <div class="col-sm-12 text-right">
+            <button class="btn btn-default btn-sm" (click)="onClearFilter()">Clear</button>
+            <button class="btn btn-primary btn-sm" (click)="onFilterCriteriaChange()">Search</button>
+        </div>
+    </div>
+</div>

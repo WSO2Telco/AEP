@@ -1,0 +1,195 @@
+<div class="table-wrapper">
+    <span class="filter" tooltip="Filter"
+          [ngClass]="{'on':isFilterVisible}"
+          (click)="onToggleFilter()"><i class="material-icons">filter_list</i></span>
+    <div><span class="tbl-cat">{{filter?.dataType?.dataCategory == 'USER' ? 'MY TASKS' : 'ALL TASKS'}}</span></div>
+    <div class="tbl-header">
+        {{tableTitle}}
+    </div>
+
+    <div class="filter-container" [ngClass]="{'open':isFilterVisible}">
+        <div class="content animated fadeInUp delay-02" *ngIf="isFilterVisible">
+            <div class="head">Filter<span class="clear" (click)="onClear('ALL')">Clear All</span></div>
+            <div class="row">
+                <div class="form-group col-xs-4">
+                    <input type="text" class="form-control"
+                           [(ngModel)]="filterId"
+                           [typeaheadMinLength]="0"
+                           container="body"
+                           [typeahead]="FilterFieldsDataSource"
+                           typeaheadOptionField="id"
+                           (typeaheadOnSelect)="onFilterItemAdded($event,'ID')"
+                           placeholder="Id">
+                </div>
+                <div class="form-group col-xs-4">
+                    <input type="text"
+                           [(ngModel)]="filterAppName"
+                           container="body"
+                           [typeaheadMinLength]="0"
+                           [typeahead]="FilterFieldsDataSource"
+                           typeaheadOptionField="applicationName"
+                           (typeaheadOnSelect)="onFilterItemAdded($event,'APP_NAME')"
+                           class="form-control" placeholder="App Name">
+                </div>
+                <div class="form-group col-xs-4">
+                    <input type="text"
+                           [(ngModel)]="filterUser"
+                           container="body"
+                           [typeahead]="FilterFieldsDataSource"
+                           typeaheadOptionField="userName"
+                           typeaheadGroupField="userName"
+                           (typeaheadOnSelect)="onFilterItemAdded($event,'USER')"
+                           class="form-control" placeholder="User">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-4">
+                    <div class="filter-val-container id" *ngIf="filter?.ids.length > 0">
+                        <div class="sec-head">ID</div>
+                        <span class="close material-icons" (click)="onClear('ID')">close</span>
+                        <span class="filter-val ids" *ngFor="let id of filter.ids">{{id}}</span>
+                    </div>
+                </div>
+                <div class="col-xs-4">
+                    <div class="filter-val-container name" *ngIf="filter?.appNames.length > 0">
+                        <div class="sec-head">App Name</div>
+                        <span class="close material-icons" (click)="onClear('NAME')">close</span>
+                        <span class="filter-val name" *ngFor="let name of filter.appNames">{{name}}</span>
+                    </div>
+                </div>
+                <div class="col-xs-4">
+                    <div class="filter-val-container user" *ngIf="filter?.users.length > 0">
+                        <div class="sec-head">User</div>
+                        <span class="close material-icons" (click)="onClear('USER')">close</span>
+                        <span class="filter-val user" *ngFor="let user of filter.users">{{user}}</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="table">
+
+        <div class="tbl-row header">
+            <div class="tbl-cell">ID</div>
+            <div class="tbl-cell">APP NAME</div>
+            <div class="tbl-cell">USER</div>
+            <div class="tbl-cell">CREATED ON</div>
+            <div class="tbl-cell text-right pad-r-15-im">ACTION</div>
+        </div>
+
+        <ng-container *ngFor="let item of dataSource?.applicationTasks; let i=index">
+            <div class="tbl-row"
+                 [ngClass]="{
+                 'modified' : item.isModified,
+                 'open':item.isExpand,
+                 'M':item.actionType == 'MORE',
+                 'A':item.actionType == 'APPROVE',
+                 'R':item.actionType == 'REJECT'}"
+                 *ngIf="!!!summeryModeRecordLimit || i < summeryModeRecordLimit">
+                <div class="tbl-cell">
+                    <span tooltip="More Info"
+                          class="action expand material-icons"
+                          (click)="item.isExpand = !item.isExpand; item.actionType = 'MORE' ">{{(item.isExpand)? 'expand_less' :  'expand_more'}}</span>
+                    {{item.id}}
+                </div>
+                <div class="tbl-cell">{{item.applicationName}}</div>
+                <div class="tbl-cell">{{item.userName || item.subscriber}}</div>
+                <div class="tbl-cell">{{item.createTime?.date + ' ' + item.createTime?.time}}</div>
+                <div class="tbl-cell text-right">
+                    <span tooltip="Approve" *ngIf="filter?.dataType?.dataCategory == 'USER'"
+                          class="action  approve material-icons"
+                          [ngClass]="{'A':item.actionType =='APPROVE' }"
+                          (click)="item.isExpand = true; item.actionType = 'APPROVE' ">check</span>
+
+                    <span tooltip="Reject" *ngIf="filter?.dataType?.dataCategory  == 'USER'"
+                          class="action  reject material-icons"
+                          [ngClass]="{'R':item.actionType =='REJECT' }"
+                          (click)="item.isExpand = true; item.actionType = 'REJECT' ">close</span>
+
+                    <span tooltip="Assign to Me" *ngIf="filter?.dataType?.dataCategory  == 'GROUP'"
+                          class="action  assign material-icons"
+                          (click)="onAction('ASSIGN',item,filter?.dataType)">assignment_ind</span>
+                </div>
+                <div class="more-con animated fadeInUp" *ngIf="item.isExpand"
+                     [ngClass]="{ 'M':item.actionType == 'MORE',
+                    'A':item.actionType == 'APPROVE',
+                    'R':item.actionType == 'REJECT'}">
+                    <div class="col-sm-12">
+                        <div class="col-xs-6">
+                            <div class="row more-row">
+                                <div class="col-xs-6 field-name">Application Id</div>
+                                <div class="col-xs-6 field-value"> {{item.applicationId}}</div>
+                            </div>
+                            <div class="row more-row">
+                                <div class="col-xs-6 field-name">Description</div>
+                                <div class="col-xs-6 field-value"> {{item.applicationDescription}}</div>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="row more-row">
+                                <div class="col-xs-6 field-name">Operator</div>
+                                <div class="col-xs-6 field-value">{{item.operators}}</div>
+                            </div>
+                            <div class="row more-row">
+                                <div class="col-xs-6 field-name">Tier</div>
+                                <div class="col-xs-6 field-value">
+                                    <select class="form-control" (change)="onOptionChange($event,item)">
+                                        <option *ngFor="let opt of item.tiersStr" [selected]="item.tier == opt">
+                                            {{opt}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12" *ngIf="item.actionType !== 'MORE'">
+                        <div class="col-xs-3 field-name">Comment</div>
+                        <div class="col-xs-9 field-value"><input type="text" class="form-control"></div>
+                    </div>
+
+                    <div class="col-sm-12 text-right" *ngIf="item.actionType !== 'MORE'">
+                        <button class="btn btn-default animated fadeIn"
+                                (click)="item.isExpand = false; item.actionType = '' ">Cancel
+                        </button>
+                        <button class="btn btn-primary animated fadeIn"
+                                *ngIf="item.actionType == 'APPROVE'"
+                                (click)="onAction('APPROVE',item,filter?.dataType)">Approve
+                        </button>
+                        <button *ngIf="item.actionType == 'REJECT'"
+                                class="btn btn-danger" (click)="onAction('REJECT',item,filter?.dataType)">Reject
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </ng-container>
+
+        <div class="no-rec-row tbl-row" *ngIf="dataSource?.applicationTasks?.length == 0">
+            <span class="no-rec">No Records..</span>
+        </div>
+    </div> <!--TABLE END-->
+
+    <div class="text-right" *ngIf="dataSource?.applicationTasks?.length > summeryModeRecordLimit"><span class="more"
+                                                                          (click)="onViewAll()">View All</span></div>
+
+    <div class="pagination-container text-center"
+         *ngIf="dataSource?.applicationTasks?.length > 0 &&  filter?.numberOfRecordsPerPage > 0 &&  (dataSource?.metadata?.total > filter?.numberOfRecordsPerPage) ">
+
+        <pagination
+                [boundaryLinks]="true"
+                [totalItems]="dataSource?.metadata?.total"
+                [(ngModel)]="currentPage"
+                [itemsPerPage]="filter.numberOfRecordsPerPage"
+                [maxSize]="5"
+                (pageChanged)="onPageChanged($event)"
+                class="pagination-sm"
+                previousText="&lsaquo;"
+                nextText="&rsaquo;"
+                firstText="&laquo;"
+                lastText="&raquo;"></pagination>
+    </div>
+
+</div> <!--WRAPPER END-->

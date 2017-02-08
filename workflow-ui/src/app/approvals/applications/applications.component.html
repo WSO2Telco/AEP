@@ -1,0 +1,21 @@
+<div class="animated fadeInUp row pad-r-15-im">
+    <div class="col-sm-6">
+        <application-data-table
+                class="my"
+                [filter]="userApplicationFilter"
+                tableTitle="MY APPLICATIONS"
+                [dataSource]="myApplications"
+                (onApproveRejectTask)="onApproveRejectHandler($event)"
+                (onFilterChange)="onFilterChangeHandler($event)"></application-data-table>
+    </div>
+    <div class="col-sm-6">
+        <application-data-table
+                class="group"
+                [filter]="groupApplicationFilter"
+                tableTitle="All APPLICATIONS"
+                [dataSource]="allApplications"
+                (onAssignTask)="onAssignTaskHandler($event)"
+                (onFilterChange)="onFilterChangeHandler($event)"></application-data-table>
+    </div>
+</div>
+

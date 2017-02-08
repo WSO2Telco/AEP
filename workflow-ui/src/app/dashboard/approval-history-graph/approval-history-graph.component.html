@@ -1,0 +1,21 @@
+<div class="row">
+    <div class="col-sm-6">
+        <canvas baseChart
+                [datasets]="appCreationHistoryDataSet"
+                [labels]="appCreationHistoryLabels"
+                [options]="barChartOptionsApplications"
+                [legend]="barChartLegend"
+                [chartType]="chartType"
+                [colors]="chartColors"></canvas>
+    </div>
+    <div class="col-sm-6">
+        <canvas baseChart
+                [datasets]="subscriptionHistoryDataSet"
+                [labels]="subscriptionHistoryLabels"
+                [options]="barChartOptionsSubscriptions"
+                [legend]="barChartLegend"
+                [chartType]="chartType"></canvas>
+    </div>
+</div>
+
+
