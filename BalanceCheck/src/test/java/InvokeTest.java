@@ -1,19 +1,17 @@
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.wso2telco.tip.client.Invoke;
 import com.wso2telco.tip.dao.impl.ReferenceDaoImpl;
-import com.wso2telco.tip.exception.BalanceCheckException;
 import com.wso2telco.tip.exception.ErrorCodes;
+import com.wso2telco.tip.model.references.Balancelimitrefs;
+import com.wso2telco.tip.model.references.Reference;
 import com.wso2telco.tip.model.references.ReferenceResponse;
-import org.apache.http.client.utils.URIBuilder;
-import org.glassfish.jersey.uri.UriTemplate;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.Test;
 
 import javax.ws.rs.core.UriBuilder;
 import java.net.URI;
-import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -67,8 +65,26 @@ public class InvokeTest {
         ObjectMapper mapper = new ObjectMapper();
         ReferenceResponse referenceResponse = new ReferenceResponse();
 
+        Reference reference1 = new Reference();
+        Balancelimitrefs balancelimitrefs1 = new Balancelimitrefs();
+        balancelimitrefs1.setNotifyURL("111");
+        balancelimitrefs1.setLimit(100);
+        balancelimitrefs1.setReferenceId("1234");
+        reference1.setBalancelimitrefs(balancelimitrefs1);
+
+        Reference reference2 = new Reference();
+        Balancelimitrefs balancelimitrefs2 = new Balancelimitrefs();
+        balancelimitrefs2.setNotifyURL("111");
+        balancelimitrefs2.setLimit(100);
+        balancelimitrefs2.setReferenceId("1234");
+        reference2.setBalancelimitrefs(balancelimitrefs2);
+
         ReferenceDaoImpl referenceDao = new ReferenceDaoImpl();
-        List<String> dialogReferenceList = null;
+        List<Reference> dialogReferenceList = new ArrayList<>();
+
+        dialogReferenceList.add(reference1);
+        dialogReferenceList.add(reference2);
+        referenceResponse.setReferences(dialogReferenceList);
 
         try {
             jsonPayload = mapper.writeValueAsString(referenceResponse);
@@ -77,5 +93,40 @@ public class InvokeTest {
             e.printStackTrace();
         }
     }
+
+    @Test
+    public void jsonTest(){
+        JSONObject jsonResponse;
+        String jsonPayload = "{\"balancelimitref\":{\"refnumber\":123}}";
+
+        jsonResponse = new JSONObject(jsonPayload);
+
+        JSONObject balancelimitref = (JSONObject) jsonResponse.get("balancelimitref");
+        System.out.println(balancelimitref.toString());
+        int refnumber = (int) balancelimitref.get("refnumber");
+        System.out.println(refnumber);
+
+    }
+
+    @Test
+    public void errorJsonTest(){
+        JSONObject error = new JSONObject();
+        JSONObject requestJson = new JSONObject();
+        requestJson.put("code", ErrorCodes.INTERNAL_SERVER_ERROR.getKey());
+        requestJson.put("message", ErrorCodes.INTERNAL_SERVER_ERROR.getCode());
+        error.put("Error", requestJson);
+        System.out.println(error.toString());
+    }
+
+    @Test
+    public void deleteTest(){
+        JSONObject balancelimitref = new JSONObject();
+        JSONObject requestJson = new JSONObject();
+        requestJson.put("refnumber","123");
+        balancelimitref.put("balancelimitref",requestJson);
+
+        System.out.println(balancelimitref.toString());
+    }
+
 
 }

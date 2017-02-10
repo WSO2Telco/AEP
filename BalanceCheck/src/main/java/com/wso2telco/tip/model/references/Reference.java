@@ -7,47 +7,21 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "referenceId",
-    "limit",
-    "notifyURL"
+    "balancelimitrefs"
 })
 public class Reference {
 
-    @JsonProperty("referenceId")
-    private String referenceId;
-    @JsonProperty("limit")
-    private Integer limit;
-    @JsonProperty("notifyURL")
-    private String notifyURL;
+    @JsonProperty("balancelimitrefs")
+    private Balancelimitrefs balancelimitrefs;
 
-    @JsonProperty("referenceId")
-    public String getReferenceId() {
-        return referenceId;
+    @JsonProperty("balancelimitrefs")
+    public Balancelimitrefs getBalancelimitrefs() {
+        return balancelimitrefs;
     }
 
-    @JsonProperty("referenceId")
-    public void setReferenceId(String referenceId) {
-        this.referenceId = referenceId;
-    }
-
-    @JsonProperty("limit")
-    public Integer getLimit() {
-        return limit;
-    }
-
-    @JsonProperty("limit")
-    public void setLimit(Integer limit) {
-        this.limit = limit;
-    }
-
-    @JsonProperty("notifyURL")
-    public String getNotifyURL() {
-        return notifyURL;
-    }
-
-    @JsonProperty("notifyURL")
-    public void setNotifyURL(String notifyURL) {
-        this.notifyURL = notifyURL;
+    @JsonProperty("balancelimitrefs")
+    public void setBalancelimitrefs(Balancelimitrefs balancelimitrefs) {
+        this.balancelimitrefs = balancelimitrefs;
     }
 
 }

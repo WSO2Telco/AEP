@@ -36,8 +36,8 @@ redis:
   poolsize: 200
 
 callback:
-  balanceUp: http://aep.wso2telco.com/balance/callback/up
-  balanceDown: http://aep.wso2telco.com/balance/callback/down
+  balanceUp: http://209.249.227.63:8280/balance/v1/callback
+  balanceDown: http://209.249.227.63:8280/balance/v1/callback
 
 remote:
-  url: http://api.dialog.com/{msisdn}
+  url: http://10.62.160.161:9445/balanceLimit/{msisdn}

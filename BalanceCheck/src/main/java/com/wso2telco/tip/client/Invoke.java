@@ -17,7 +17,6 @@ import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
 import java.io.IOException;
 import java.net.URI;
@@ -52,12 +51,14 @@ public class Invoke {
         }
 
         JSONObject requestJson = new JSONObject();
+        JSONObject balanceLimit = new JSONObject();
         requestJson.put("limit",limit);
         requestJson.put("notifyURL_balance_up",balanceUp);
         requestJson.put("notifyURL_balance_down",balanceDown);
+        balanceLimit.put("balanceLimit",requestJson);
 
         if (log.isDebugEnabled()) {
-            log.debug("Request JSON : " + requestJson.toString());
+            log.debug("Request JSON : " + balanceLimit.toString());
         }
 
         UriBuilder builder = UriBuilder.fromPath(remoteUrl);
@@ -72,7 +73,7 @@ public class Invoke {
         HttpResponse response;
         JSONObject jsonResponse;
 
-        StringEntity stringEntity = new StringEntity(requestJson.toString(), ContentType.APPLICATION_JSON);
+        StringEntity stringEntity = new StringEntity(balanceLimit.toString(), ContentType.APPLICATION_JSON);
         post.setEntity(stringEntity);
         post.setHeader("Content-type", "application/json");
 
@@ -125,14 +126,16 @@ public class Invoke {
         URI callUrl = builder.build(msisdn);
         HttpClient client = HttpClientBuilder.create().build();
         HttpDeleteWithBody request = new HttpDeleteWithBody(callUrl);
+        JSONObject balancelimitref = new JSONObject();
         JSONObject requestJson = new JSONObject();
         requestJson.put("refnumber",reference);
+        balancelimitref.put("balancelimitref",requestJson);
 
         if (log.isDebugEnabled()) {
-            log.debug("Request JSON : " + requestJson.toString());
+            log.debug("Request JSON : " + balancelimitref.toString());
         }
 
-        StringEntity stringEntity = new StringEntity(requestJson.toString(), ContentType.APPLICATION_JSON);
+        StringEntity stringEntity = new StringEntity(balancelimitref.toString(), ContentType.APPLICATION_JSON);
         request.setEntity(stringEntity);
         request.setHeader("Content-type", "application/json");
         HttpResponse response;
@@ -160,7 +163,7 @@ public class Invoke {
      BalanceLimit
      trigger_type [balance_up, balance_down, subscription_delete]
      */
-    public void invokeCallBack(String reference, String msisdn, String balanceLimit, String triggerType, String notifyUrl) throws BalanceCheckException {
+    public void invokeCallBack(String reference, String msisdn, int balanceLimit, String triggerType, String notifyUrl) throws BalanceCheckException {
         JSONObject requestJson = new JSONObject();
         requestJson.put("refnumber", reference);
         requestJson.put("msisdn", msisdn);
