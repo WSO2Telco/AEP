@@ -2,7 +2,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.wso2telco.tip.dao.impl.ReferenceDaoImpl;
 import com.wso2telco.tip.exception.ErrorCodes;
-import com.wso2telco.tip.model.references.Balancelimitrefs;
 import com.wso2telco.tip.model.references.Reference;
 import com.wso2telco.tip.model.references.ReferenceResponse;
 import org.json.JSONException;
@@ -66,18 +65,15 @@ public class InvokeTest {
         ReferenceResponse referenceResponse = new ReferenceResponse();
 
         Reference reference1 = new Reference();
-        Balancelimitrefs balancelimitrefs1 = new Balancelimitrefs();
-        balancelimitrefs1.setNotifyURL("111");
-        balancelimitrefs1.setLimit(100);
-        balancelimitrefs1.setReferenceId("1234");
-        reference1.setBalancelimitrefs(balancelimitrefs1);
+
+        reference1.setNotifyURL("111");
+        reference1.setLimit(100);
+        reference1.setReferenceId("1234");
 
         Reference reference2 = new Reference();
-        Balancelimitrefs balancelimitrefs2 = new Balancelimitrefs();
-        balancelimitrefs2.setNotifyURL("111");
-        balancelimitrefs2.setLimit(100);
-        balancelimitrefs2.setReferenceId("1234");
-        reference2.setBalancelimitrefs(balancelimitrefs2);
+        reference2.setNotifyURL("111");
+        reference2.setLimit(100);
+        reference2.setReferenceId("1234");
 
         ReferenceDaoImpl referenceDao = new ReferenceDaoImpl();
         List<Reference> dialogReferenceList = new ArrayList<>();

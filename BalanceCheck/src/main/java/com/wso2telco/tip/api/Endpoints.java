@@ -10,7 +10,6 @@ import com.wso2telco.tip.client.Invoke;
 import com.wso2telco.tip.dao.impl.ReferenceDaoImpl;
 import com.wso2telco.tip.exception.BalanceCheckException;
 import com.wso2telco.tip.exception.ErrorCodes;
-import com.wso2telco.tip.model.references.Balancelimitrefs;
 import com.wso2telco.tip.model.references.Reference;
 import com.wso2telco.tip.model.references.ReferenceResponse;
 import com.wso2telco.tip.util.Validator;
@@ -38,6 +37,10 @@ public class Endpoints {
     @GET
     @Path("/version")
     public String print(){
+        if(log.isDebugEnabled())
+            log.debug("version endpoint called");
+        if(log.isInfoEnabled())
+            log.info("version endpoint called");
         return "v1.0";
     }
 
@@ -50,13 +53,11 @@ public class Endpoints {
 
         if(!Validator.validateMsisdn(msisdn)) {
             if(log.isDebugEnabled())
-                log.debug("msisdn format error : " + msisdn);
-            JSONObject error = new JSONObject();
+                log.debug("msisdn format error : " + msisdn);            
             JSONObject requestJson = new JSONObject();
             requestJson.put("code", ErrorCodes.MSISDN_FORMAT_ERROR.getKey());
-            requestJson.put("message", ErrorCodes.MSISDN_FORMAT_ERROR.getCode());
-            error.put("Error",requestJson);
-            return Response.status(HttpServletResponse.SC_BAD_REQUEST).header("Content-Type", "application/json").entity(error.toString()).build();
+            requestJson.put("message", ErrorCodes.MSISDN_FORMAT_ERROR.getCode());            
+            return Response.status(HttpServletResponse.SC_BAD_REQUEST).header("Content-Type", "application/json").entity(requestJson.toString()).build();
         }
 
         ObjectMapper mapper = new ObjectMapper();
@@ -69,15 +70,13 @@ public class Endpoints {
         }else{
             for (String dialogReference: dialogReferenceList) {
                 Reference reference = new Reference();
-                Balancelimitrefs balancelimitrefs = new Balancelimitrefs();
                 String telcoReference = referenceDao.getTelcoReferenceFromDialogReference(dialogReference);
                 String limit = referenceDao.getLimitFromDialogReference(dialogReference);
                 String callback = referenceDao.getCallbackFromDialogReference(dialogReference);
                 int balancelimit = Integer.parseInt(limit);
-                balancelimitrefs.setReferenceId(telcoReference);
-                balancelimitrefs.setLimit(balancelimit);
-                balancelimitrefs.setNotifyURL(callback);
-                reference.setBalancelimitrefs(balancelimitrefs);
+                reference.setReferenceId(telcoReference);
+                reference.setLimit(balancelimit);
+                reference.setNotifyURL(callback);
                 references.add(reference);
             }
             referenceResponse.setReferences(references);
@@ -86,12 +85,10 @@ public class Endpoints {
             jsonPayload = mapper.writeValueAsString(referenceResponse);
         } catch (JsonProcessingException e) {
             log.error("JSON Processing Error" , e);
-            JSONObject error = new JSONObject();
             JSONObject requestJson = new JSONObject();
             requestJson.put("code", ErrorCodes.JSON_PROCESSING_ERROR.getKey());
             requestJson.put("message", ErrorCodes.JSON_PROCESSING_ERROR.getCode());
-            error.put("Error",requestJson);
-            return Response.status(HttpServletResponse.SC_BAD_REQUEST).header("Content-Type", "application/json").entity(error.toString()).build();
+            return Response.status(HttpServletResponse.SC_BAD_REQUEST).header("Content-Type", "application/json").entity(requestJson.toString()).build();
         }
         return Response.status(HttpServletResponse.SC_OK).header("Content-Type", "application/json").entity(jsonPayload).build();
     }
@@ -117,12 +114,10 @@ public class Endpoints {
         if(!Validator.validateMsisdn(msisdn)) {
             if(log.isDebugEnabled())
                 log.debug("msisdn format error : " + msisdn);
-            JSONObject error = new JSONObject();
             JSONObject requestJson = new JSONObject();
             requestJson.put("code", ErrorCodes.MSISDN_FORMAT_ERROR.getKey());
             requestJson.put("message", ErrorCodes.MSISDN_FORMAT_ERROR.getCode());
-            error.put("Error",requestJson);
-            return Response.status(HttpServletResponse.SC_BAD_REQUEST).header("Content-Type", "application/json").entity(error.toString()).build();
+            return Response.status(HttpServletResponse.SC_BAD_REQUEST).header("Content-Type", "application/json").entity(requestJson.toString()).build();
         }
 
         ReferenceDaoImpl referenceDao = new ReferenceDaoImpl();
@@ -135,12 +130,10 @@ public class Endpoints {
         if((limitElement instanceof JsonNull) || (notifyUrlElement instanceof JsonNull)){
             if(log.isDebugEnabled())
                 log.debug("mandatory parameters null");
-            JSONObject error = new JSONObject();
             JSONObject requestJson = new JSONObject();
             requestJson.put("code", ErrorCodes.INPUT_ERROR.getKey());
             requestJson.put("message", ErrorCodes.INPUT_ERROR.getCode());
-            error.put("Error",requestJson);
-            return Response.status(HttpServletResponse.SC_BAD_REQUEST).header("Content-Type", "application/json").entity(error.toString()).build();
+            return Response.status(HttpServletResponse.SC_BAD_REQUEST).header("Content-Type", "application/json").entity(requestJson.toString()).build();
         }else{
             limit = limitElement.getAsInt();
             notifyUrl = notifyUrlElement.getAsString();
@@ -149,12 +142,10 @@ public class Endpoints {
         if(!Validator.validateUrl(notifyUrl)) {
             if(log.isDebugEnabled())
                 log.debug("invlid url error occured : " + notifyUrl);
-            JSONObject error = new JSONObject();
             JSONObject requestJson = new JSONObject();
             requestJson.put("code", ErrorCodes.URL_FORMAT_ERROR.getKey());
             requestJson.put("message", ErrorCodes.URL_FORMAT_ERROR.getCode());
-            error.put("Error",requestJson);
-            return Response.status(HttpServletResponse.SC_BAD_REQUEST).header("Content-Type", "application/json").entity(error.toString()).build();
+            return Response.status(HttpServletResponse.SC_BAD_REQUEST).header("Content-Type", "application/json").entity(requestJson.toString()).build();
         }
 
         try {
@@ -172,23 +163,22 @@ public class Endpoints {
             referenceDao.setMsisdnReferenceEntry(msisdn, dialogReference);
         } catch (BalanceCheckException e) {
             log.error("Error While Sending POST" , e);
-            JSONObject error = new JSONObject();
             JSONObject requestJson = new JSONObject();
             requestJson.put("code", ErrorCodes.INTERNAL_SERVER_ERROR.getKey());
             requestJson.put("message", ErrorCodes.INTERNAL_SERVER_ERROR.getCode());
-            error.put("Error",requestJson);
-            return Response.status(HttpServletResponse.SC_BAD_REQUEST).header("Content-Type", "application/json").entity(error.toString()).build();
+            return Response.status(HttpServletResponse.SC_BAD_REQUEST).header("Content-Type", "application/json").entity(requestJson.toString()).build();
         } catch (JSONException e){
             log.error("Json Error While Sending POST" , e);
-            JSONObject error = new JSONObject();
             JSONObject requestJson = new JSONObject();
             requestJson.put("code", ErrorCodes.JSON_PROCESSING_ERROR.getKey());
             requestJson.put("message", ErrorCodes.JSON_PROCESSING_ERROR.getCode());
-            error.put("Error",requestJson);
-            return Response.status(HttpServletResponse.SC_BAD_REQUEST).header("Content-Type", "application/json").entity(error.toString()).build();
+            return Response.status(HttpServletResponse.SC_BAD_REQUEST).header("Content-Type", "application/json").entity(requestJson.toString()).build();
         }
 
-        return Response.status(HttpServletResponse.SC_CREATED).build();
+        JSONObject requestJson = new JSONObject();
+        requestJson.put("referenceId", telcoReference);
+
+        return Response.status(HttpServletResponse.SC_CREATED).header("Content-Type", "application/json").entity(requestJson.toString()).build();
     }
 
     @DELETE
@@ -204,11 +194,9 @@ public class Endpoints {
 
         if(!Validator.validateMsisdn(msisdn)) {
             JSONObject requestJson = new JSONObject();
-            JSONObject error = new JSONObject();
             requestJson.put("code", ErrorCodes.MSISDN_FORMAT_ERROR.getKey());
             requestJson.put("message", ErrorCodes.MSISDN_FORMAT_ERROR.getCode());
-            error.put("Error",requestJson);
-            return Response.status(HttpServletResponse.SC_BAD_REQUEST).header("Content-Type", "application/json").entity(error.toString()).build();
+            return Response.status(HttpServletResponse.SC_BAD_REQUEST).header("Content-Type", "application/json").entity(requestJson.toString()).build();
         }
 
         ReferenceDaoImpl referenceDao = new ReferenceDaoImpl();
@@ -220,12 +208,10 @@ public class Endpoints {
         if((referenceIdElement instanceof JsonNull)){
             if(log.isDebugEnabled())
                 log.debug("mandatory parameters null");
-            JSONObject error = new JSONObject();
             JSONObject requestJson = new JSONObject();
             requestJson.put("code", ErrorCodes.INPUT_ERROR.getKey());
             requestJson.put("message", ErrorCodes.INPUT_ERROR.getCode());
-            error.put("Error",requestJson);
-            return Response.status(HttpServletResponse.SC_BAD_REQUEST).header("Content-Type", "application/json").entity(error.toString()).build();
+            return Response.status(HttpServletResponse.SC_BAD_REQUEST).header("Content-Type", "application/json").entity(requestJson.toString()).build();
         }else{
             telcoReference = referenceIdElement.getAsString();
         }
@@ -236,20 +222,16 @@ public class Endpoints {
             invoke.sendDelete(msisdn,dialogReferenceNumber);
         } catch (BalanceCheckException e) {
             log.error("error occured while invoking delete" , e);
-            JSONObject error = new JSONObject();
             JSONObject requestJson = new JSONObject();
             requestJson.put("code", ErrorCodes.INTERNAL_SERVER_ERROR.getKey());
             requestJson.put("message", ErrorCodes.INTERNAL_SERVER_ERROR.getCode());
-            error.put("Error",requestJson);
-            return Response.status(HttpServletResponse.SC_INTERNAL_SERVER_ERROR).header("Content-Type", "application/json").entity(error.toString()).build();
+            return Response.status(HttpServletResponse.SC_INTERNAL_SERVER_ERROR).header("Content-Type", "application/json").entity(requestJson.toString()).build();
         }
 
         JSONObject requestJson = new JSONObject();
-        JSONObject balancelimitref = new JSONObject();
         requestJson.put("referenceId", telcoReference);
-        balancelimitref.put("balancelimitref",requestJson);
 
-        return Response.status(HttpServletResponse.SC_OK).header("Content-Type", "application/json").entity(balancelimitref.toString()).build();
+        return Response.status(HttpServletResponse.SC_OK).header("Content-Type", "application/json").entity(requestJson.toString()).build();
     }
 
     @POST
@@ -281,12 +263,10 @@ public class Endpoints {
         if((referenceIdElement instanceof JsonNull) || (msisdnElement instanceof JsonNull) || (balanceElement instanceof JsonNull) || (triggerTypeElement instanceof JsonNull)){
             if(log.isDebugEnabled())
                 log.debug("mandatory parameters null");
-            JSONObject error = new JSONObject();
             JSONObject requestJson = new JSONObject();
             requestJson.put("code", ErrorCodes.INPUT_ERROR.getKey());
             requestJson.put("message", ErrorCodes.INPUT_ERROR.getCode());
-            error.put("Error",requestJson);
-            return Response.status(HttpServletResponse.SC_BAD_REQUEST).header("Content-Type", "application/json").entity(error.toString()).build();
+            return Response.status(HttpServletResponse.SC_BAD_REQUEST).header("Content-Type", "application/json").entity(requestJson.toString()).build();
         }else{
             dialogReferenceNumber = referenceIdElement.getAsInt();
             msisdn = msisdnElement.getAsString();
@@ -299,24 +279,20 @@ public class Endpoints {
         if(telcoReference == null || telcoReference.isEmpty()){
             if(log.isDebugEnabled())
                 log.debug("Couldn't find telco reference for the given dialog reference");
-            JSONObject error = new JSONObject();
             JSONObject requestJson = new JSONObject();
             requestJson.put("code", ErrorCodes.INPUT_ERROR.getKey());
             requestJson.put("message", ErrorCodes.INPUT_ERROR.getCode());
-            error.put("Error",requestJson);
-            return Response.status(HttpServletResponse.SC_BAD_REQUEST).header("Content-Type", "application/json").entity(error.toString()).build();
+            return Response.status(HttpServletResponse.SC_BAD_REQUEST).header("Content-Type", "application/json").entity(requestJson.toString()).build();
         }
         callbackurl = referenceDao.getCallbackFromDialogReference(dialogReference);
         try {
             invoke.invokeCallBack(telcoReference, msisdn ,balanceLimit, triggerType, callbackurl);
         } catch (BalanceCheckException e) {
             log.error("error occured while invoking callback" , e);
-            JSONObject error = new JSONObject();
             JSONObject requestJson = new JSONObject();
             requestJson.put("code", ErrorCodes.INTERNAL_SERVER_ERROR.getKey());
             requestJson.put("message", ErrorCodes.INTERNAL_SERVER_ERROR.getCode());
-            error.put("Error",requestJson);
-            return Response.status(HttpServletResponse.SC_INTERNAL_SERVER_ERROR).header("Content-Type", "application/json").entity(error.toString()).build();
+            return Response.status(HttpServletResponse.SC_INTERNAL_SERVER_ERROR).header("Content-Type", "application/json").entity(requestJson.toString()).build();
         }
         return Response.status(HttpServletResponse.SC_OK).build();
     }
