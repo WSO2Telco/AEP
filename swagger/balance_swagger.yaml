@@ -1,12 +1,12 @@
 swagger: '2.0'
 info:
-  version: '1.0.0'
+  version: 'v1'
   title: Balance Limit
-  description: Sets a minimum balance limit notification. When the users account balance reaches the set limit, a notification will be sent to the specified notify URL
-host: api.wso2telco.com
+  description: Sets a balance limit notification. Balance down -  When the users account balance reaches the set limit, a notification will be sent to the specified notify URL. Balance Up - When the users account is reloaded, a notification will be sent to the sepecified notify URL.
+host: 209.249.227.63:8280
 basePath: /balance
 schemes:
-  - https
+  - http
 consumes:
   - application/json
 produces:
@@ -14,13 +14,13 @@ produces:
 paths:
   /{msisdn}:
     post:
-      description: Sets a minimum balance notification
+      description: Sets a balance notification
       produces:
         - application/json
       parameters:
         - name: msisdn
           in: path
-          description: The MSISDN of the end user. Number should be with tel prefix. MSISDN should inlude country code. E.g. "tel:+94123456789"
+          description: The MSISDN of the end user. Number should be with tel          prefix. MSISDN should inlude country code. E.g. "tel:+94123456789"
           required: true
           type: string
         - name: BalanceLimit
@@ -32,18 +32,83 @@ paths:
       responses:
         201:
           description: Balance limit set
+          schema:
+            $ref: '#/definitions/balancelimitref'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    delete:
+      description: Delete a balance notification
+      produces:
+        - application/json
+      parameters:
+        - name: msisdn
+          in: path
+          description: The MSISDN of the end user. Number should be with tel          prefix. MSISDN should inlude country code. E.g. "tel:+94123456789"
+          required: true
+          type: string
+        - name: BalanceLimit
+          in: body
+          description: Specify the balance limit and notify URL
+          required: true
+          schema:
+            $ref: '#/definitions/balancelimitref'
+      responses:
+        200:
+          description: Balance limit deleted
+          schema:
+            $ref: '#/definitions/balancelimitref'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+            
+    get:
+      description: query a balance notification
+      produces:
+        - application/json
+      parameters:
+        - name: msisdn
+          in: path
+          description: The MSISDN of the end user. Number should be with tel          prefix. MSISDN should inlude country code. E.g. "tel:+94123456789"
+          required: true
+          type: string
+      responses:
+        200:
+          description: Balance limit query
+          schema:
+            properties:
+              references:
+                type: array
+                items:
+                  $ref: '#/definitions/balancelimitrefs'
         default:
           description: unexpected error
           schema:
             $ref: '#/definitions/Error'
       x-async-responses:
-        - eventId: limitReached
-          description: This event is triggerd when the user reaches the set balance limit
+        - eventId: balance_hit
+          description: This event is triggerd when the user crosses the set balance limit
           parameters:
-            - name: limitReached
+            - name: referenceId
               in: body
               required: true
-              type: boolean
+              type: string
+            - name: msisdn
+              in: body
+              required: true
+              type: string
+            - name: BalanceLimit
+              in: body
+              required: true
+              type: int
+            - name: trigger_type
+              in: body
+              required: true
+              type: string
+        
+        
 definitions:
   balanceLimit:
     type: object
@@ -56,6 +121,27 @@ definitions:
         format: int64
       notifyURL:
         type: string
+  balancelimitref:
+    type: object
+    required:
+      - referenceId
+    properties:
+      referenceId:
+        type: string
+  balancelimitrefs:
+    type: object
+    required:
+        - referenceId
+        - limit
+        - notifyURL
+    properties:
+        referenceId:
+          type: string
+        limit:
+          type: integer
+          format: int64
+        notifyURL:
+          type: string
   Error:
     type: object
     required:
