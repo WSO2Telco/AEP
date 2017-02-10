@@ -91,7 +91,7 @@ public class Endpoints {
             return Response.status(HttpServletResponse.SC_BAD_REQUEST).header("Content-Type", "application/json").entity(requestJson.toString()).build();
         }
 
-        if(jsonPayload == null || jsonPayload.isEmpty()){
+        if(jsonPayload == null || jsonPayload.isEmpty() || jsonPayload.equals("null")){
             log.error("JSON Payload is null");
             JSONObject requestJson = new JSONObject();
             requestJson.put("code", ErrorCodes.INTERNAL_SERVER_ERROR.getKey());
