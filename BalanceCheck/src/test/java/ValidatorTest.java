@@ -11,11 +11,20 @@ public class ValidatorTest {
 
     @Test
     public void Test(){
-        assertTrue("Valid Number tel:+91123456789",Validator.validateMsisdn("tel:+91123456789"));
-        assertFalse("InValid Number tel:+9112345678",Validator.validateMsisdn("tel:+9112345678"));
-        assertFalse("InValid Number tel:+911234567890",Validator.validateMsisdn("tel:+911234567890"));
-        assertFalse("InValid Number 91123456789",Validator.validateMsisdn("91123456789"));
-        assertFalse("InValid Number tl:+91123456789",Validator.validateMsisdn("tl:+91123456789"));
+        assertTrue("Valid Number tel:+91123456789",Validator.validateTelMsisdn("tel:+91123456789"));
+        assertFalse("InValid Number tel:+9112345678",Validator.validateTelMsisdn("tel:+9112345678"));
+        assertFalse("InValid Number tel:+911234567890",Validator.validateTelMsisdn("tel:+911234567890"));
+        assertFalse("InValid Number 91123456789",Validator.validateTelMsisdn("91123456789"));
+        assertFalse("InValid Number tl:+91123456789",Validator.validateTelMsisdn("tl:+91123456789"));
+    }
+
+    @Test
+    public void MsisdnTest(){
+        assertTrue("Valid Number 94123456789",Validator.validateMsisdn("94771353682"));
+        assertFalse("InValid Number tel:+9112345678",Validator.validateTelMsisdn("tel:+9112345678"));
+        assertFalse("InValid Number tel:+911234567890",Validator.validateTelMsisdn("tel:+911234567890"));
+        assertFalse("InValid Number 91123456789",Validator.validateTelMsisdn("91123456789"));
+        assertFalse("InValid Number tl:+91123456789",Validator.validateTelMsisdn("tl:+91123456789"));
     }
 
     @Test
