@@ -90,6 +90,14 @@ public class Endpoints {
             requestJson.put("message", ErrorCodes.JSON_PROCESSING_ERROR.getCode());
             return Response.status(HttpServletResponse.SC_BAD_REQUEST).header("Content-Type", "application/json").entity(requestJson.toString()).build();
         }
+
+        if(jsonPayload == null || jsonPayload.isEmpty()){
+            log.error("JSON Payload is null");
+            JSONObject requestJson = new JSONObject();
+            requestJson.put("code", ErrorCodes.INTERNAL_SERVER_ERROR.getKey());
+            requestJson.put("message", ErrorCodes.INTERNAL_SERVER_ERROR.getCode());
+            return Response.status(HttpServletResponse.SC_INTERNAL_SERVER_ERROR).header("Content-Type", "application/json").entity(requestJson.toString()).build();
+        }
         return Response.status(HttpServletResponse.SC_OK).header("Content-Type", "application/json").entity(jsonPayload).build();
     }
 
