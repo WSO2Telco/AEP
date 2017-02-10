@@ -20,7 +20,7 @@ paths:
       parameters:
         - name: msisdn
           in: path
-          description: The MSISDN of the end user. Number should be with tel          prefix. MSISDN should inlude country code. E.g. "tel:+94123456789"
+          description: The MSISDN of the end user. MSISDN should inlude country code. E.g. "94123456789"
           required: true
           type: string
         - name: BalanceLimit
@@ -45,7 +45,7 @@ paths:
       parameters:
         - name: msisdn
           in: path
-          description: The MSISDN of the end user. Number should be with tel          prefix. MSISDN should inlude country code. E.g. "tel:+94123456789"
+          description: The MSISDN of the end user. MSISDN should inlude country code. E.g. "94123456789"
           required: true
           type: string
         - name: BalanceLimit
@@ -78,7 +78,7 @@ paths:
       parameters:
         - name: msisdn
           in: path
-          description: The MSISDN of the end user. Number should be with tel          prefix. MSISDN should inlude country code. E.g. "tel:+94123456789"
+          description: The MSISDN of the end user. MSISDN should inlude country code. E.g. "94123456789"
           required: true
           type: string
       responses:
@@ -101,7 +101,7 @@ paths:
             - name: refnumber
               in: body
               required: true
-              type: string
+              type: int
             - name: msisdn
               in: body
               required: true
@@ -109,7 +109,7 @@ paths:
             - name: BalanceLimit
               in: body
               required: true
-              type: string
+              type: int
             - name: trigger_type
               in: body
               required: true
