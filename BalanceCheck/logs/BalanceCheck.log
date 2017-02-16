@@ -1,0 +1,70 @@
+INFO  [2017-02-16 20:15:48,102] org.eclipse.jetty.util.log: Logging initialized @1188ms
+INFO  [2017-02-16 20:15:48,222] io.dropwizard.server.DefaultServerFactory: Registering jersey handler with root path prefix: /
+INFO  [2017-02-16 20:15:48,223] io.dropwizard.server.DefaultServerFactory: Registering admin handler with root path prefix: /
+INFO  [2017-02-16 20:15:48,223] com.wso2telco.tip.conf.ApplicationInitializer: Registering REST resources
+INFO  [2017-02-16 20:15:48,223] com.wso2telco.tip.conf.ApplicationInitializer: Initializing Config
+INFO  [2017-02-16 20:15:48,228] io.dropwizard.server.DefaultServerFactory: Registering jersey handler with root path prefix: /
+INFO  [2017-02-16 20:15:48,228] io.dropwizard.server.DefaultServerFactory: Registering admin handler with root path prefix: /
+INFO  [2017-02-16 20:15:48,230] io.dropwizard.server.ServerFactory: Starting ApplicationInitializer
+INFO  [2017-02-16 20:15:48,427] org.eclipse.jetty.setuid.SetUIDListener: Opened application@293bb8a5{SSL,[ssl, http/1.1]}{0.0.0.0:8181}
+INFO  [2017-02-16 20:15:48,428] org.eclipse.jetty.setuid.SetUIDListener: Opened admin@2416a51{HTTP/1.1,[http/1.1]}{0.0.0.0:8282}
+INFO  [2017-02-16 20:15:48,430] org.eclipse.jetty.server.Server: jetty-9.3.z-SNAPSHOT
+WARN  [2017-02-16 20:15:48,578] org.eclipse.jetty.util.thread.QueuedThreadPool: dw-admin{STOPPED,1<=0<=64,i=0,q=0} rejected org.eclipse.jetty.io.ManagedSelector@780ec4a5 id=0 keys=0 selected=0
+ERROR [2017-02-16 20:15:48,580] io.dropwizard.cli.ServerCommand: Unable to start server, shutting down
+! java.lang.IllegalStateException: Unable to retrieve certificate chain
+! at org.eclipse.jetty.util.security.CertificateValidator.validate(CertificateValidator.java:179)
+! at org.eclipse.jetty.util.ssl.SslContextFactory.doStart(SslContextFactory.java:367)
+! at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68)
+! at org.eclipse.jetty.util.component.ContainerLifeCycle.start(ContainerLifeCycle.java:132)
+! at org.eclipse.jetty.server.Server.start(Server.java:411)
+! at org.eclipse.jetty.util.component.ContainerLifeCycle.doStart(ContainerLifeCycle.java:114)
+! at org.eclipse.jetty.server.handler.AbstractHandler.doStart(AbstractHandler.java:61)
+! at org.eclipse.jetty.server.Server.doStart(Server.java:378)
+! ... 7 common frames omitted
+! Causing: org.eclipse.jetty.util.MultiException: Multiple exceptions
+! at org.eclipse.jetty.server.Server.doStart(Server.java:353)
+! at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68)
+! at io.dropwizard.cli.ServerCommand.run(ServerCommand.java:53)
+! at io.dropwizard.cli.EnvironmentCommand.run(EnvironmentCommand.java:44)
+! at io.dropwizard.cli.ConfiguredCommand.run(ConfiguredCommand.java:85)
+! at io.dropwizard.cli.Cli.run(Cli.java:75)
+! at io.dropwizard.Application.run(Application.java:79)
+! at com.wso2telco.tip.conf.ApplicationInitializer.main(ApplicationInitializer.java:18)
+! Suppressed: java.lang.IllegalStateException: Unable to retrieve certificate chain
+! 	at org.eclipse.jetty.util.security.CertificateValidator.validate(CertificateValidator.java:179)
+! 	at org.eclipse.jetty.util.ssl.SslContextFactory.doStart(SslContextFactory.java:367)
+! 	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68)
+! 	at org.eclipse.jetty.util.component.ContainerLifeCycle.start(ContainerLifeCycle.java:132)
+! 	at org.eclipse.jetty.util.component.ContainerLifeCycle.doStart(ContainerLifeCycle.java:114)
+! 	at org.eclipse.jetty.server.SslConnectionFactory.doStart(SslConnectionFactory.java:64)
+! 	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68)
+! 	at org.eclipse.jetty.util.component.ContainerLifeCycle.start(ContainerLifeCycle.java:132)
+! 	at org.eclipse.jetty.util.component.ContainerLifeCycle.doStart(ContainerLifeCycle.java:114)
+! 	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68)
+! 	at org.eclipse.jetty.util.component.ContainerLifeCycle.start(ContainerLifeCycle.java:132)
+! 	at org.eclipse.jetty.util.component.ContainerLifeCycle.doStart(ContainerLifeCycle.java:114)
+! 	at org.eclipse.jetty.server.AbstractConnector.doStart(AbstractConnector.java:260)
+! 	at org.eclipse.jetty.server.AbstractNetworkConnector.doStart(AbstractNetworkConnector.java:81)
+! 	at org.eclipse.jetty.server.ServerConnector.doStart(ServerConnector.java:235)
+! 	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68)
+! 	at org.eclipse.jetty.server.Server.doStart(Server.java:390)
+! 	... 7 common frames omitted
+! Suppressed: java.util.concurrent.RejectedExecutionException: org.eclipse.jetty.io.ManagedSelector@780ec4a5 id=0 keys=0 selected=0
+! 	at org.eclipse.jetty.util.thread.QueuedThreadPool.execute(QueuedThreadPool.java:383)
+! 	at org.eclipse.jetty.io.SelectorManager.execute(SelectorManager.java:143)
+! 	at org.eclipse.jetty.io.ManagedSelector.doStart(ManagedSelector.java:91)
+! 	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68)
+! 	at org.eclipse.jetty.util.component.ContainerLifeCycle.start(ContainerLifeCycle.java:132)
+! 	at org.eclipse.jetty.util.component.ContainerLifeCycle.doStart(ContainerLifeCycle.java:114)
+! 	at org.eclipse.jetty.io.SelectorManager.doStart(SelectorManager.java:273)
+! 	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68)
+! 	at org.eclipse.jetty.util.component.ContainerLifeCycle.start(ContainerLifeCycle.java:132)
+! 	at org.eclipse.jetty.util.component.ContainerLifeCycle.doStart(ContainerLifeCycle.java:106)
+! 	at org.eclipse.jetty.server.AbstractConnector.doStart(AbstractConnector.java:260)
+! 	at org.eclipse.jetty.server.AbstractNetworkConnector.doStart(AbstractNetworkConnector.java:81)
+! 	at org.eclipse.jetty.server.ServerConnector.doStart(ServerConnector.java:235)
+! 	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68)
+! 	at org.eclipse.jetty.server.Server.doStart(Server.java:390)
+! 	... 7 common frames omitted
+INFO  [2017-02-16 20:15:48,587] org.eclipse.jetty.server.AbstractConnector: Stopped application@293bb8a5{SSL,[ssl, http/1.1]}{0.0.0.0:8181}
+INFO  [2017-02-16 20:16:48,591] org.eclipse.jetty.server.AbstractConnector: Stopped admin@2416a51{HTTP/1.1,[http/1.1]}{0.0.0.0:8282}
