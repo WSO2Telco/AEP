@@ -67,6 +67,8 @@ public class Endpoints {
         ReferenceDaoImpl referenceDao = new ReferenceDaoImpl();
         List<String> dialogReferenceList = referenceDao.getDialogReferenceListForMsisdn(msisdn);
         List<Reference> references = new ArrayList<>();
+        if(log.isDebugEnabled())
+            log.debug("dialog reference list : " + dialogReferenceList.toString());
         if(dialogReferenceList == null || dialogReferenceList.isEmpty()){
             try {
                 if(log.isDebugEnabled())
