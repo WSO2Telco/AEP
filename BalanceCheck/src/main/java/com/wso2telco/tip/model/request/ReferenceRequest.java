@@ -8,19 +8,19 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "request"
+    "references"
 })
 public class ReferenceRequest {
 
-    @JsonProperty("request")
+    @JsonProperty("references")
     private List<Reference> references = null;
 
-    @JsonProperty("request")
+    @JsonProperty("references")
     public List<Reference> getReferences() {
         return references;
     }
 
-    @JsonProperty("request")
+    @JsonProperty("references")
     public void setReferences(List<Reference> references) {
         this.references = references;
     }

@@ -1,14 +1,11 @@
 package com.wso2telco.tip.client;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.deser.std.StringArrayDeserializer;
-import com.wso2telco.tip.dao.PersistableReferenceDAO;
 import com.wso2telco.tip.dao.impl.ReferenceDaoImpl;
 import com.wso2telco.tip.exception.BalanceCheckException;
 import com.wso2telco.tip.exception.ErrorCodes;
 import com.wso2telco.tip.model.response.Balancelimitrefs;
 import com.wso2telco.tip.model.response.Reference;
-import com.wso2telco.tip.model.request.ReferenceRequest;
 import com.wso2telco.tip.model.response.ReferenceResponse;
 import org.json.JSONObject;
 import org.slf4j.Logger;

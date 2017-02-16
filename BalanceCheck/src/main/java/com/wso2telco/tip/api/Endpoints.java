@@ -95,6 +95,8 @@ public class Endpoints {
 
         try {
             jsonPayload = mapper.writeValueAsString(referenceRequest);
+            if(log.isDebugEnabled())
+                log.debug("Json Payload : " + jsonPayload);
         } catch (JsonProcessingException e) {
             log.error("JSON Processing Error" , e);
             JSONObject requestJson = new JSONObject();
