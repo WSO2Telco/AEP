@@ -72,6 +72,7 @@ public class Endpoints {
                 if(log.isDebugEnabled())
                     log.debug("updating the balance limit map");
                 updator.update(msisdn);
+                dialogReferenceList = referenceDao.getDialogReferenceListForMsisdn(msisdn);
             } catch (BalanceCheckException e) {
                 log.error("Error updating Map" , e);
                 JSONObject requestJson = new JSONObject();
