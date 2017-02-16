@@ -3,7 +3,7 @@ server:
           - type: http
                 # The port the application will listen on
             port: 8181
-            bindHost: 0.0.0.0
+            bindHost: 0.0.0.0             
         adminConnectors:
           - type: http
                 # The admin port
