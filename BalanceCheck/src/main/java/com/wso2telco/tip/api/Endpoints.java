@@ -7,11 +7,12 @@ import com.google.gson.JsonNull;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.wso2telco.tip.client.Invoke;
+import com.wso2telco.tip.client.Updator;
 import com.wso2telco.tip.dao.impl.ReferenceDaoImpl;
 import com.wso2telco.tip.exception.BalanceCheckException;
 import com.wso2telco.tip.exception.ErrorCodes;
-import com.wso2telco.tip.model.references.Reference;
-import com.wso2telco.tip.model.references.ReferenceResponse;
+import com.wso2telco.tip.model.request.Reference;
+import com.wso2telco.tip.model.request.ReferenceRequest;
 import com.wso2telco.tip.util.Validator;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -53,36 +54,45 @@ public class Endpoints {
 
         if(!Validator.validateMsisdn(msisdn)) {
             if(log.isDebugEnabled())
-                log.debug("msisdn format error : " + msisdn);            
+                log.debug("msisdn format error : " + msisdn);
             JSONObject requestJson = new JSONObject();
             requestJson.put("code", ErrorCodes.MSISDN_FORMAT_ERROR.getKey());
-            requestJson.put("message", ErrorCodes.MSISDN_FORMAT_ERROR.getCode());            
+            requestJson.put("message", ErrorCodes.MSISDN_FORMAT_ERROR.getCode());
             return Response.status(HttpServletResponse.SC_BAD_REQUEST).header("Content-Type", "application/json").entity(requestJson.toString()).build();
         }
 
+        Updator updator = new Updator();
         ObjectMapper mapper = new ObjectMapper();
-        ReferenceResponse referenceResponse = new ReferenceResponse();
+        ReferenceRequest referenceRequest = new ReferenceRequest();
         ReferenceDaoImpl referenceDao = new ReferenceDaoImpl();
         List<String> dialogReferenceList = referenceDao.getDialogReferenceListForMsisdn(msisdn);
         List<Reference> references = new ArrayList<>();
         if(dialogReferenceList == null || dialogReferenceList.isEmpty()){
-            referenceResponse = null;
-        }else{
-            for (String dialogReference: dialogReferenceList) {
-                Reference reference = new Reference();
-                String telcoReference = referenceDao.getTelcoReferenceFromDialogReference(dialogReference);
-                String limit = referenceDao.getLimitFromDialogReference(dialogReference);
-                String callback = referenceDao.getCallbackFromDialogReference(dialogReference);
-                int balancelimit = Integer.parseInt(limit);
-                reference.setReferenceId(telcoReference);
-                reference.setLimit(balancelimit);
-                reference.setNotifyURL(callback);
-                references.add(reference);
+            try {
+                updator.update(msisdn);
+            } catch (BalanceCheckException e) {
+                log.error("Error updating Map" , e);
+                JSONObject requestJson = new JSONObject();
+                requestJson.put("code", ErrorCodes.INTERNAL_SERVER_ERROR.getKey());
+                requestJson.put("message", ErrorCodes.INTERNAL_SERVER_ERROR.getCode());
+                return Response.status(HttpServletResponse.SC_BAD_REQUEST).header("Content-Type", "application/json").entity(requestJson.toString()).build();
             }
-            referenceResponse.setReferences(references);
         }
+        for (String dialogReference: dialogReferenceList) {
+            Reference reference = new Reference();
+            String telcoReference = referenceDao.getTelcoReferenceFromDialogReference(dialogReference);
+            String limit = referenceDao.getLimitFromDialogReference(dialogReference);
+            String callback = referenceDao.getCallbackFromDialogReference(dialogReference);
+            int balancelimit = Integer.parseInt(limit);
+            reference.setReferenceId(telcoReference);
+            reference.setLimit(balancelimit);
+            reference.setNotifyURL(callback);
+            references.add(reference);
+        }
+        referenceRequest.setReferences(references);
+
         try {
-            jsonPayload = mapper.writeValueAsString(referenceResponse);
+            jsonPayload = mapper.writeValueAsString(referenceRequest);
         } catch (JsonProcessingException e) {
             log.error("JSON Processing Error" , e);
             JSONObject requestJson = new JSONObject();

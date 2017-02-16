@@ -1,5 +1,5 @@
 
-package com.wso2telco.tip.model.references;
+package com.wso2telco.tip.model.request;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;

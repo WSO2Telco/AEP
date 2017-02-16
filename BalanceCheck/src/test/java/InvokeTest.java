@@ -2,8 +2,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.wso2telco.tip.dao.impl.ReferenceDaoImpl;
 import com.wso2telco.tip.exception.ErrorCodes;
-import com.wso2telco.tip.model.references.Reference;
-import com.wso2telco.tip.model.references.ReferenceResponse;
+import com.wso2telco.tip.model.request.Reference;
+import com.wso2telco.tip.model.request.ReferenceRequest;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.Test;
@@ -62,7 +62,7 @@ public class InvokeTest {
     public void jacksonJsonTest(){
         String jsonPayload;
         ObjectMapper mapper = new ObjectMapper();
-        ReferenceResponse referenceResponse = new ReferenceResponse();
+        ReferenceRequest referenceResponse = new ReferenceRequest();
 
         Reference reference1 = new Reference();
 

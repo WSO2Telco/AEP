@@ -1,5 +1,5 @@
 
-package com.wso2telco.tip.model.references;
+package com.wso2telco.tip.model.request;
 
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -8,19 +8,19 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "references"
+    "request"
 })
-public class ReferenceResponse {
+public class ReferenceRequest {
 
-    @JsonProperty("references")
+    @JsonProperty("request")
     private List<Reference> references = null;
 
-    @JsonProperty("references")
+    @JsonProperty("request")
     public List<Reference> getReferences() {
         return references;
     }
 
-    @JsonProperty("references")
+    @JsonProperty("request")
     public void setReferences(List<Reference> references) {
         this.references = references;
     }
