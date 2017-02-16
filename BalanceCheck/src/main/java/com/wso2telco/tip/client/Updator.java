@@ -34,6 +34,9 @@ public class Updator {
         try {
             Invoke invoke = new Invoke();
             resultJson = invoke.sendGet(msisdn);
+
+            if(log.isDebugEnabled())
+                log.debug("Result Json Received : " + resultJson );
             ReferenceResponse referenceResponse = mapper.readValue(resultJson.toString(), ReferenceResponse.class);
             List<Reference> referenceList = referenceResponse.getReferences();
             ReferenceDaoImpl referenceDao = new ReferenceDaoImpl();
@@ -47,7 +50,14 @@ public class Updator {
                 int limitValue = balancelimitrefs.getLimit();
                 String limit = String.valueOf(limitValue);
                 String notifyUrl = balancelimitrefs.getNotifyURLBalanceDown();
+                if(log.isDebugEnabled()) {
+                    log.debug("dialog Reference Number: " + dialogReferenceNumber);
+                    log.debug("limitValue: " + limitValue);
+                    log.debug("notifyUrl: " + notifyUrl);
+                }
                 if(!dialogReferenceList.contains(dialogReference)){
+                    if(log.isDebugEnabled())
+                        log.debug("reference not found in  the local map, updating : " + dialogReference);
                     String telcoReference = UUID.randomUUID().toString();
                     referenceDao.setReferenceEntry(telcoReference, dialogReference);
                     referenceDao.setCallbackEntry(dialogReference, telcoReference, msisdn, limit, notifyUrl);

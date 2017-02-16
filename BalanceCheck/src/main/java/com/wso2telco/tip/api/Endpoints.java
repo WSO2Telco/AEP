@@ -69,6 +69,8 @@ public class Endpoints {
         List<Reference> references = new ArrayList<>();
         if(dialogReferenceList == null || dialogReferenceList.isEmpty()){
             try {
+                if(log.isDebugEnabled())
+                    log.debug("updating the balance limit map");
                 updator.update(msisdn);
             } catch (BalanceCheckException e) {
                 log.error("Error updating Map" , e);
