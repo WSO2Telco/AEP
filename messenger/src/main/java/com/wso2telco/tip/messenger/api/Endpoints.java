@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
 
@@ -28,9 +29,17 @@ public class Endpoints {
 
     @GET
     @Path("/callback")
+    public Response callback() {
+        if(log.isInfoEnabled())
+            log.info("callback GET invoked : ");
+        return Response.status(HttpServletResponse.SC_OK).build();
+    }
+
+    @POST
+    @Path("/callback")
     public Response callback(String jsonBody) {
         if(log.isInfoEnabled())
-            log.info(jsonBody);
+            log.info("callback POST invoked : " + jsonBody);
         return Response.status(HttpServletResponse.SC_OK).build();
     }
 
