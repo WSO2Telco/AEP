@@ -8,7 +8,7 @@ server:
           - type: http
                 # The admin port
             port: 7001
-
+            
 logging:
   level: INFO
   loggers:

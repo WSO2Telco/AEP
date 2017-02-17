@@ -1,0 +1,1 @@
+web: java $JAVA_OPTS -Ddw.server.applicationConnectors[0].port=$PORT -jar target/messenger.jar server deploy/config.yml
