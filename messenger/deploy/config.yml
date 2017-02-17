@@ -1,0 +1,45 @@
+server:
+        applicationConnectors:
+          - type: http
+                # The port the application will listen on
+            port: 7000
+            bindHost: 0.0.0.0
+        adminConnectors:
+          - type: http
+                # The admin port
+            port: 7001
+
+logging:
+  level: INFO
+  loggers:
+    io.dropwizard: INFO
+    com.wso2telco: DEBUG
+  appenders:
+    - type: console
+      threshold: ALL
+      timeZone: UTC
+      target: stdout
+# Enable following for file appender
+    - type: file
+      currentLogFilename: logs/messenger.log #<path to log file>/<filename.log>
+      threshold: ALL
+      archive: true
+      archivedLogFilenamePattern: logs/messenger-%d.log #<path to log file >/< archive filename.log>
+      archivedFileCount: 5
+      timeZone: UTC
+
+redis:
+  port: 6379
+  host: localhost
+  password: cY4L3dBf@mifenew
+  timeout: 2000
+  poolsize: 200
+
+dialog:
+  appid: APP_033377
+  password: 185a2f3e8674d34c56d3c275a2980014
+  url: https://api.dialog.lk/sms/send
+
+remote:
+  url: http://cricapi.com/api/
+  apikey: 8eRChM1x6UXeKBhkAbqo9J8Rnhh2

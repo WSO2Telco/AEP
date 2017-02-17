@@ -1,0 +1,84 @@
+INFO  [2017-02-17 18:41:19,475] org.eclipse.jetty.util.log: Logging initialized @1060ms
+INFO  [2017-02-17 18:41:19,557] io.dropwizard.server.DefaultServerFactory: Registering jersey handler with root path prefix: /
+INFO  [2017-02-17 18:41:19,557] io.dropwizard.server.DefaultServerFactory: Registering admin handler with root path prefix: /
+INFO  [2017-02-17 18:41:19,557] com.wso2telco.tip.messenger.conf.ApplicationInitializer: Registering REST resources
+INFO  [2017-02-17 18:41:19,557] com.wso2telco.tip.messenger.conf.ApplicationInitializer: Initializing Config
+INFO  [2017-02-17 18:41:19,560] io.dropwizard.server.DefaultServerFactory: Registering jersey handler with root path prefix: /
+INFO  [2017-02-17 18:41:19,561] io.dropwizard.server.DefaultServerFactory: Registering admin handler with root path prefix: /
+INFO  [2017-02-17 18:41:19,562] io.dropwizard.server.ServerFactory: Starting ApplicationInitializer
+INFO  [2017-02-17 18:41:19,696] org.eclipse.jetty.setuid.SetUIDListener: Opened application@2f058b8a{HTTP/1.1,[http/1.1]}{0.0.0.0:7000}
+INFO  [2017-02-17 18:41:19,696] org.eclipse.jetty.setuid.SetUIDListener: Opened admin@756cf158{HTTP/1.1,[http/1.1]}{0.0.0.0:7001}
+INFO  [2017-02-17 18:41:19,698] org.eclipse.jetty.server.Server: jetty-9.3.z-SNAPSHOT
+INFO  [2017-02-17 18:41:20,152] io.dropwizard.jersey.DropwizardResourceConfig: The following paths were found for the configured resources:
+
+    GET     /messenger/callback (com.wso2telco.tip.messenger.api.Endpoints)
+    GET     /messenger/version (com.wso2telco.tip.messenger.api.Endpoints)
+
+WARN  [2017-02-17 18:41:20,153] org.glassfish.jersey.internal.Errors: The following warnings have been detected: WARNING: A HTTP GET method, public javax.ws.rs.core.Response com.wso2telco.tip.messenger.api.Endpoints.callback(java.lang.String), should not consume any entity.
+
+INFO  [2017-02-17 18:41:20,155] org.eclipse.jetty.server.handler.ContextHandler: Started i.d.j.MutableServletContextHandler@7918c7f8{/,null,AVAILABLE}
+INFO  [2017-02-17 18:41:20,159] io.dropwizard.setup.AdminEnvironment: tasks = 
+
+    POST    /tasks/log-level (io.dropwizard.servlets.tasks.LogConfigurationTask)
+    POST    /tasks/gc (io.dropwizard.servlets.tasks.GarbageCollectionTask)
+
+WARN  [2017-02-17 18:41:20,160] io.dropwizard.setup.AdminEnvironment: 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!    THIS APPLICATION HAS NO HEALTHCHECKS. THIS MEANS YOU WILL NEVER KNOW      !
+!     IF IT DIES IN PRODUCTION, WHICH MEANS YOU WILL NEVER KNOW IF YOU'RE      !
+!    LETTING YOUR USERS DOWN. YOU SHOULD ADD A HEALTHCHECK FOR EACH OF YOUR    !
+!         APPLICATION'S DEPENDENCIES WHICH FULLY (BUT LIGHTLY) TESTS IT.       !
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+INFO  [2017-02-17 18:41:20,164] org.eclipse.jetty.server.handler.ContextHandler: Started i.d.j.MutableServletContextHandler@4393593c{/,null,AVAILABLE}
+INFO  [2017-02-17 18:41:20,171] org.eclipse.jetty.server.AbstractConnector: Started application@2f058b8a{HTTP/1.1,[http/1.1]}{0.0.0.0:7000}
+INFO  [2017-02-17 18:41:20,172] org.eclipse.jetty.server.AbstractConnector: Started admin@756cf158{HTTP/1.1,[http/1.1]}{0.0.0.0:7001}
+INFO  [2017-02-17 18:41:20,173] org.eclipse.jetty.server.Server: Started @1759ms
+INFO  [2017-02-17 18:41:42,730] com.wso2telco.tip.messenger.api.Endpoints: version endpoint called
+INFO  [2017-02-17 18:41:50,685] org.eclipse.jetty.server.AbstractConnector: Stopped application@2f058b8a{HTTP/1.1,[http/1.1]}{0.0.0.0:7000}
+INFO  [2017-02-17 18:41:50,688] org.eclipse.jetty.server.AbstractConnector: Stopped admin@756cf158{HTTP/1.1,[http/1.1]}{0.0.0.0:7001}
+INFO  [2017-02-17 18:41:50,692] org.eclipse.jetty.server.handler.ContextHandler: Stopped i.d.j.MutableServletContextHandler@4393593c{/,null,UNAVAILABLE}
+INFO  [2017-02-17 18:41:50,699] org.eclipse.jetty.server.handler.ContextHandler: Stopped i.d.j.MutableServletContextHandler@7918c7f8{/,null,UNAVAILABLE}
+INFO  [2017-02-17 18:41:58,184] org.eclipse.jetty.util.log: Logging initialized @1097ms
+INFO  [2017-02-17 18:41:58,271] io.dropwizard.server.DefaultServerFactory: Registering jersey handler with root path prefix: /
+INFO  [2017-02-17 18:41:58,271] io.dropwizard.server.DefaultServerFactory: Registering admin handler with root path prefix: /
+INFO  [2017-02-17 18:41:58,271] com.wso2telco.tip.messenger.conf.ApplicationInitializer: Registering REST resources
+INFO  [2017-02-17 18:41:58,271] com.wso2telco.tip.messenger.conf.ApplicationInitializer: Initializing Config
+INFO  [2017-02-17 18:41:58,275] io.dropwizard.server.DefaultServerFactory: Registering jersey handler with root path prefix: /
+INFO  [2017-02-17 18:41:58,275] io.dropwizard.server.DefaultServerFactory: Registering admin handler with root path prefix: /
+INFO  [2017-02-17 18:41:58,277] io.dropwizard.server.ServerFactory: Starting ApplicationInitializer
+INFO  [2017-02-17 18:41:58,419] org.eclipse.jetty.setuid.SetUIDListener: Opened application@2f058b8a{HTTP/1.1,[http/1.1]}{0.0.0.0:7000}
+INFO  [2017-02-17 18:41:58,419] org.eclipse.jetty.setuid.SetUIDListener: Opened admin@756cf158{HTTP/1.1,[http/1.1]}{0.0.0.0:7001}
+INFO  [2017-02-17 18:41:58,421] org.eclipse.jetty.server.Server: jetty-9.3.z-SNAPSHOT
+INFO  [2017-02-17 18:41:58,857] io.dropwizard.jersey.DropwizardResourceConfig: The following paths were found for the configured resources:
+
+    GET     /messenger/callback (com.wso2telco.tip.messenger.api.Endpoints)
+    GET     /messenger/version (com.wso2telco.tip.messenger.api.Endpoints)
+
+WARN  [2017-02-17 18:41:58,858] org.glassfish.jersey.internal.Errors: The following warnings have been detected: WARNING: A HTTP GET method, public javax.ws.rs.core.Response com.wso2telco.tip.messenger.api.Endpoints.callback(java.lang.String), should not consume any entity.
+
+INFO  [2017-02-17 18:41:58,858] org.eclipse.jetty.server.handler.ContextHandler: Started i.d.j.MutableServletContextHandler@7918c7f8{/,null,AVAILABLE}
+INFO  [2017-02-17 18:41:58,862] io.dropwizard.setup.AdminEnvironment: tasks = 
+
+    POST    /tasks/log-level (io.dropwizard.servlets.tasks.LogConfigurationTask)
+    POST    /tasks/gc (io.dropwizard.servlets.tasks.GarbageCollectionTask)
+
+WARN  [2017-02-17 18:41:58,862] io.dropwizard.setup.AdminEnvironment: 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!    THIS APPLICATION HAS NO HEALTHCHECKS. THIS MEANS YOU WILL NEVER KNOW      !
+!     IF IT DIES IN PRODUCTION, WHICH MEANS YOU WILL NEVER KNOW IF YOU'RE      !
+!    LETTING YOUR USERS DOWN. YOU SHOULD ADD A HEALTHCHECK FOR EACH OF YOUR    !
+!         APPLICATION'S DEPENDENCIES WHICH FULLY (BUT LIGHTLY) TESTS IT.       !
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+INFO  [2017-02-17 18:41:58,865] org.eclipse.jetty.server.handler.ContextHandler: Started i.d.j.MutableServletContextHandler@4393593c{/,null,AVAILABLE}
+INFO  [2017-02-17 18:41:58,871] org.eclipse.jetty.server.AbstractConnector: Started application@2f058b8a{HTTP/1.1,[http/1.1]}{0.0.0.0:7000}
+INFO  [2017-02-17 18:41:58,872] org.eclipse.jetty.server.AbstractConnector: Started admin@756cf158{HTTP/1.1,[http/1.1]}{0.0.0.0:7001}
+INFO  [2017-02-17 18:41:58,872] org.eclipse.jetty.server.Server: Started @1786ms
+INFO  [2017-02-17 18:43:22,673] com.wso2telco.tip.messenger.api.Endpoints: version endpoint called
+INFO  [2017-02-17 18:43:54,479] org.eclipse.jetty.server.AbstractConnector: Stopped application@2f058b8a{HTTP/1.1,[http/1.1]}{0.0.0.0:7000}
+INFO  [2017-02-17 18:43:54,484] org.eclipse.jetty.server.AbstractConnector: Stopped admin@756cf158{HTTP/1.1,[http/1.1]}{0.0.0.0:7001}
+INFO  [2017-02-17 18:43:54,487] org.eclipse.jetty.server.handler.ContextHandler: Stopped i.d.j.MutableServletContextHandler@4393593c{/,null,UNAVAILABLE}
+INFO  [2017-02-17 18:43:54,495] org.eclipse.jetty.server.handler.ContextHandler: Stopped i.d.j.MutableServletContextHandler@7918c7f8{/,null,UNAVAILABLE}
