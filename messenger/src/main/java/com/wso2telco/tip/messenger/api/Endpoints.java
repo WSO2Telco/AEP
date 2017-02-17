@@ -4,9 +4,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletResponse;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 
@@ -29,10 +28,13 @@ public class Endpoints {
 
     @GET
     @Path("/callback")
-    public Response callback() {
-        if(log.isInfoEnabled())
+    public Response callback(@QueryParam("hub.challenge") String challenge, @QueryParam("hub.verify_token") String token) {
+        if(log.isInfoEnabled()) {
             log.info("callback GET invoked : ");
-        return Response.status(HttpServletResponse.SC_OK).build();
+            log.info("hub.challenge : " + challenge);
+            log.info("hub verify token : " + token);
+        }
+        return Response.status(HttpServletResponse.SC_OK).header("Content-Type", MediaType.TEXT_PLAIN).entity(challenge).build();
     }
 
     @POST
