@@ -294,7 +294,7 @@ public class Endpoints {
             dialogReferenceNumber = referenceIdElement.getAsInt();
             msisdn = msisdnElement.getAsString();
             balanceLimit = balanceElement.getAsInt();
-            triggerType = balanceElement.getAsString();
+            triggerType = triggerTypeElement.getAsString();
         }
 
         dialogReference = String.valueOf(dialogReferenceNumber);
