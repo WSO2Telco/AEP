@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 import org.json.JSONObject;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Response;
@@ -20,6 +21,13 @@ import java.io.IOException;
 public class Endpoints {
     private static final Logger log = Logger.getLogger(Invoke.class);
 
+    @GET
+    @Path("/version")
+    public String getVersion(){
+        return "v1.0";
+    }
+
+    @GET
     @Path("{msisdn}")
     public Response getBalance(@PathParam("msisdn") String msisdn){
 
