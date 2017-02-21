@@ -24,6 +24,8 @@ public class Endpoints {
     @GET
     @Path("/version")
     public String getVersion(){
+        if(log.isDebugEnabled())
+            log.debug("version endpoint invoked");
         return "v1.0";
     }
 
