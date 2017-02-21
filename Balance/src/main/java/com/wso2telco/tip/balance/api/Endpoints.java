@@ -3,8 +3,9 @@ package com.wso2telco.tip.balance.api;
 import com.wso2telco.tip.balance.exception.ErrorCodes;
 import com.wso2telco.tip.balance.invoke.Invoke;
 import com.wso2telco.tip.balance.util.Validator;
-import org.apache.log4j.BasicConfigurator;
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.*;
 import org.json.JSONObject;
 
 import javax.servlet.http.HttpServletResponse;
@@ -20,12 +21,19 @@ import java.io.IOException;
 
 @Path("/")
 public class Endpoints {
-    private static final Logger log = Logger.getLogger(Endpoints.class);
 
+    static
+    {
+        Logger rootLogger = Logger.getRootLogger();
+        rootLogger.setLevel(Level.INFO);
+        rootLogger.addAppender(new ConsoleAppender(
+                new PatternLayout("%-6r [%p] %c - %m%n")));
+    }
+
+    private Log log = LogFactory.getLog(Endpoints.class);
     @GET
     @Path("/version")
     public String getVersion(){
-        BasicConfigurator.configure();
         if(log.isInfoEnabled())
             log.info("version endpoint invoked");
         return "v1.0";
