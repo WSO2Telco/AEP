@@ -59,7 +59,7 @@ public class Endpoints {
         JSONObject requestJson = null;
         try {
             requestJson = invoke.sendGet(msisdn.substring(2));
-        } catch (IOException e) {
+        } catch (Exception e) {
             log.error("Error Occured for the msisdn : " + msisdn, e);
             requestJson = new JSONObject();
             requestJson.put("code", ErrorCodes.INTERNAL_SERVER_ERROR.getKey());

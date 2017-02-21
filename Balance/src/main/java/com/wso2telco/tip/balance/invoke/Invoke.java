@@ -33,7 +33,7 @@ public class Invoke {
                 new PatternLayout("%-6r [%p] %c - %m%n")));
     }
 
-    public JSONObject sendGet(String msisdn) throws IOException {
+    public JSONObject sendGet(String msisdn) throws Exception {
 
         String remoteURL = ResourceLoader.getRemoteUrl();
         UriBuilder builder = UriBuilder.fromPath(remoteURL);
@@ -46,8 +46,6 @@ public class Invoke {
 
         HttpResponse response;
         JSONObject jsonResponse;
-
-
         response = client.execute(request);
         String responseString = EntityUtils.toString(response.getEntity());
         jsonResponse = new JSONObject(responseString.substring(1,responseString.length()-1));
