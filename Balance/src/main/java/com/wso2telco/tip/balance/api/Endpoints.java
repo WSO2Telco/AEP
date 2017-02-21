@@ -3,6 +3,7 @@ package com.wso2telco.tip.balance.api;
 import com.wso2telco.tip.balance.exception.ErrorCodes;
 import com.wso2telco.tip.balance.invoke.Invoke;
 import com.wso2telco.tip.balance.util.Validator;
+import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 import org.json.JSONObject;
 
@@ -19,26 +20,27 @@ import java.io.IOException;
 
 @Path("/")
 public class Endpoints {
-    private static final Logger log = Logger.getLogger(Invoke.class);
+    private static final Logger log = Logger.getLogger(Endpoints.class);
 
     @GET
     @Path("/version")
     public String getVersion(){
-        if(log.isDebugEnabled())
-            log.debug("version endpoint invoked");
+        BasicConfigurator.configure();
+        if(log.isInfoEnabled())
+            log.info("version endpoint invoked");
         return "v1.0";
     }
 
     @GET
     @Path("{msisdn}")
     public Response getBalance(@PathParam("msisdn") String msisdn){
-
-        if(log.isDebugEnabled())
-            log.debug("get balance for the msisdn : " + msisdn);
+        BasicConfigurator.configure();
+        if(log.isInfoEnabled())
+            log.info("get balance for the msisdn : " + msisdn);
 
         if(!Validator.validateMsisdn(msisdn)) {
-            if(log.isDebugEnabled())
-                log.debug("msisdn format error : " + msisdn);
+            if(log.isInfoEnabled())
+                log.info("msisdn format error : " + msisdn);
             JSONObject requestJson = new JSONObject();
             requestJson.put("code", ErrorCodes.MSISDN_FORMAT_ERROR.getKey());
             requestJson.put("message", ErrorCodes.MSISDN_FORMAT_ERROR.getCode());

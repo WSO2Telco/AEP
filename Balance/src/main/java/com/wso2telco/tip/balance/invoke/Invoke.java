@@ -6,6 +6,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
+import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 import org.json.JSONObject;
 
@@ -22,14 +23,15 @@ public class Invoke {
 
     public JSONObject sendGet(String msisdn) throws IOException {
 
+        BasicConfigurator.configure();
         String remoteURL = ResourceLoader.getRemoteUrl();
         UriBuilder builder = UriBuilder.fromPath(remoteURL);
         URI callUrl = builder.build(msisdn);
         HttpClient client = HttpClientBuilder.create().build();
         HttpGet request = new HttpGet(callUrl);
 
-        if(log.isDebugEnabled())
-            log.debug("Request Url : " + callUrl.toString());
+        if(log.isInfoEnabled())
+            log.info("Request Url : " + callUrl.toString());
 
         HttpResponse response;
         JSONObject jsonResponse;
@@ -38,9 +40,9 @@ public class Invoke {
         response = client.execute(request);
         String responseString = EntityUtils.toString(response.getEntity());
         jsonResponse = new JSONObject(responseString);
-        if(log.isDebugEnabled()){
-            log.debug("Response Code : " + response.getStatusLine().getStatusCode());
-            log.debug("JSON Response : " + jsonResponse.toString());
+        if(log.isInfoEnabled()){
+            log.info("Response Code : " + response.getStatusLine().getStatusCode());
+            log.info("JSON Response : " + jsonResponse.toString());
         }
         return jsonResponse;
     }
