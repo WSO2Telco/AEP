@@ -13,7 +13,6 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Response;
-import java.io.IOException;
 
 /**
  * Created by yasith on 2/21/17.
@@ -21,14 +20,6 @@ import java.io.IOException;
 
 @Path("/")
 public class Endpoints {
-
-    static
-    {
-        Logger rootLogger = Logger.getRootLogger();
-        rootLogger.setLevel(Level.INFO);
-        rootLogger.addAppender(new ConsoleAppender(
-                new PatternLayout("%-6r [%p] %c - %m%n")));
-    }
 
     private Log log = LogFactory.getLog(Endpoints.class);
     @GET

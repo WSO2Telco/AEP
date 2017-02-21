@@ -25,14 +25,6 @@ public class Invoke {
 
     private Log log = LogFactory.getLog(Invoke.class);
 
-    static
-    {
-        Logger rootLogger = Logger.getRootLogger();
-        rootLogger.setLevel(Level.INFO);
-        rootLogger.addAppender(new ConsoleAppender(
-                new PatternLayout("%-6r [%p] %c - %m%n")));
-    }
-
     public JSONObject sendGet(String msisdn) throws Exception {
 
         String remoteURL = ResourceLoader.getRemoteUrl();
