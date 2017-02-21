@@ -32,7 +32,7 @@ public class Invoke {
         rootLogger.addAppender(new ConsoleAppender(
                 new PatternLayout("%-6r [%p] %c - %m%n")));
     }
-    
+
     public JSONObject sendGet(String msisdn) throws IOException {
 
         String remoteURL = ResourceLoader.getRemoteUrl();
@@ -50,7 +50,7 @@ public class Invoke {
 
         response = client.execute(request);
         String responseString = EntityUtils.toString(response.getEntity());
-        jsonResponse = new JSONObject(responseString);
+        jsonResponse = new JSONObject(responseString.substring(1,responseString.length()-1));
         if(log.isInfoEnabled()){
             log.info("Response Code : " + response.getStatusLine().getStatusCode());
             log.info("JSON Response : " + jsonResponse.toString());
