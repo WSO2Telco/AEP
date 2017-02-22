@@ -29,7 +29,7 @@ public class Invoke {
         ConfigReader configReader = ConfigReader.getInstance();
         Map<Object,Object> remote = (Map<Object, Object>) configReader.getApplicationConfiguration().getRemote();
         url = (String) remote.get("url");
-        isRemoteEnabled = Boolean.parseBoolean((String) remote.get("isEnabled"));
+        isRemoteEnabled = (Boolean) remote.get("isEnabled");
     }
 
     public JSONObject getBalance(String msisdn) throws Exception {

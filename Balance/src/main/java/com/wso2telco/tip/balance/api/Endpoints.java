@@ -70,7 +70,7 @@ public class Endpoints {
     public Response topup(@PathParam("msisdn") String msisdn, String jsonBody){
 
         if(log.isInfoEnabled()) {
-            log.info("get balance for the msisdn : " + msisdn);
+            log.info("POST for msisdn : " + msisdn);
             log.info("json body : " + jsonBody);
         }
 
@@ -83,34 +83,36 @@ public class Endpoints {
             return Response.status(HttpServletResponse.SC_BAD_REQUEST).header("Content-Type", "application/json").entity(requestJson.toString()).build();
         }
 
-        JsonParser parser = new JsonParser();
         JSONObject jsonObjectBalance;
-        Invoke invoke = new Invoke();
-        JsonObject jsonObject = parser.parse(jsonBody).getAsJsonObject();
-        DataPublisher dataPublisher = new DataPublisher();
-        JsonElement rechargeAmountElement = jsonObject.get("rechargeAmount");
-        double rechargeAmount = rechargeAmountElement.getAsDouble();
-        if(log.isInfoEnabled())
-            log.info("recharge amount : " + rechargeAmount);
-
-        String existingBalance = dataPublisher.getAmount(msisdn);
-        if(existingBalance == null || existingBalance.isEmpty()){
-            if(log.isInfoEnabled())
-                log.info("no msisdn found in the dummy dataset");
-            existingBalance = "100.00";
-        }
-
-        if(log.isInfoEnabled())
-            log.info("Existing Balance : " + existingBalance);
-
-        double existingBalanceValue = Double.parseDouble(existingBalance);
-        double newAmount = existingBalanceValue + rechargeAmount;
-
-        if(log.isInfoEnabled())
-            log.info("new amount : " + newAmount);
-        dataPublisher.publishData(msisdn,String.valueOf(newAmount));
 
         try {
+            JsonParser parser = new JsonParser();
+
+            Invoke invoke = new Invoke();
+            JsonObject jsonObject = parser.parse(jsonBody).getAsJsonObject();
+            DataPublisher dataPublisher = new DataPublisher();
+            JsonElement rechargeAmountElement = jsonObject.get("rechargeAmount");
+            double rechargeAmount = rechargeAmountElement.getAsDouble();
+            if(log.isInfoEnabled())
+                log.info("recharge amount : " + rechargeAmount);
+
+            String existingBalance = dataPublisher.getAmount(msisdn);
+            if(existingBalance == null || existingBalance.isEmpty()){
+                if(log.isInfoEnabled())
+                    log.info("no msisdn found in the dummy dataset");
+                existingBalance = "100.00";
+            }
+
+            if(log.isInfoEnabled())
+                log.info("Existing Balance : " + existingBalance);
+
+            double existingBalanceValue = Double.parseDouble(existingBalance);
+            double newAmount = existingBalanceValue + rechargeAmount;
+
+            if(log.isInfoEnabled())
+                log.info("new amount : " + newAmount);
+            dataPublisher.publishData(msisdn,String.valueOf(newAmount));
+
             jsonObjectBalance = invoke.getBalance(msisdn);
         } catch (Exception e) {
             log.error("exception occured while POST : " + msisdn, e);
