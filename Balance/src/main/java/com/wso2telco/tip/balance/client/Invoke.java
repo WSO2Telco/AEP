@@ -43,7 +43,7 @@ public class Invoke {
         JSONObject jsonResponse;
         response = client.execute(request);
         String responseString = EntityUtils.toString(response.getEntity());
-        String parsedResponse = responseString.substring(1,responseString.length()-1);
+        String parsedResponse = responseString.substring(1,responseString.length()-1).replace("\\","");
         if(log.isInfoEnabled())
             log.info("response String : " + parsedResponse);
         jsonResponse = new JSONObject(parsedResponse);
