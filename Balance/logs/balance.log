@@ -1,0 +1,121 @@
+INFO  [2017-02-22 04:51:58,744] org.eclipse.jetty.util.log: Logging initialized @1076ms
+INFO  [2017-02-22 04:51:58,832] io.dropwizard.server.DefaultServerFactory: Registering jersey handler with root path prefix: /
+INFO  [2017-02-22 04:51:58,832] io.dropwizard.server.DefaultServerFactory: Registering admin handler with root path prefix: /
+INFO  [2017-02-22 04:51:58,832] com.wso2telco.tip.balance.conf.ApplicationInitializer: Registering REST resources
+INFO  [2017-02-22 04:51:58,832] com.wso2telco.tip.balance.conf.ApplicationInitializer: Initializing Config
+INFO  [2017-02-22 04:51:58,837] io.dropwizard.server.DefaultServerFactory: Registering jersey handler with root path prefix: /
+INFO  [2017-02-22 04:51:58,837] io.dropwizard.server.DefaultServerFactory: Registering admin handler with root path prefix: /
+INFO  [2017-02-22 04:51:58,839] io.dropwizard.server.ServerFactory: Starting ApplicationInitializer
+INFO  [2017-02-22 04:51:58,995] org.eclipse.jetty.setuid.SetUIDListener: Opened application@4e76dac{HTTP/1.1,[http/1.1]}{0.0.0.0:6000}
+INFO  [2017-02-22 04:51:58,996] org.eclipse.jetty.setuid.SetUIDListener: Opened admin@611df6e3{HTTP/1.1,[http/1.1]}{0.0.0.0:6001}
+INFO  [2017-02-22 04:51:58,997] org.eclipse.jetty.server.Server: jetty-9.3.z-SNAPSHOT
+INFO  [2017-02-22 04:51:59,530] io.dropwizard.jersey.DropwizardResourceConfig: The following paths were found for the configured resources:
+
+    GET     /version (com.wso2telco.tip.balance.api.Endpoints)
+    GET     /{msisdn} (com.wso2telco.tip.balance.api.Endpoints)
+
+INFO  [2017-02-22 04:51:59,533] org.eclipse.jetty.server.handler.ContextHandler: Started i.d.j.MutableServletContextHandler@53ac845a{/,null,AVAILABLE}
+INFO  [2017-02-22 04:51:59,538] io.dropwizard.setup.AdminEnvironment: tasks = 
+
+    POST    /tasks/log-level (io.dropwizard.servlets.tasks.LogConfigurationTask)
+    POST    /tasks/gc (io.dropwizard.servlets.tasks.GarbageCollectionTask)
+
+WARN  [2017-02-22 04:51:59,539] io.dropwizard.setup.AdminEnvironment: 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!    THIS APPLICATION HAS NO HEALTHCHECKS. THIS MEANS YOU WILL NEVER KNOW      !
+!     IF IT DIES IN PRODUCTION, WHICH MEANS YOU WILL NEVER KNOW IF YOU'RE      !
+!    LETTING YOUR USERS DOWN. YOU SHOULD ADD A HEALTHCHECK FOR EACH OF YOUR    !
+!         APPLICATION'S DEPENDENCIES WHICH FULLY (BUT LIGHTLY) TESTS IT.       !
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+INFO  [2017-02-22 04:51:59,548] org.eclipse.jetty.server.handler.ContextHandler: Started i.d.j.MutableServletContextHandler@4eb30d44{/,null,AVAILABLE}
+INFO  [2017-02-22 04:51:59,556] org.eclipse.jetty.server.AbstractConnector: Started application@4e76dac{HTTP/1.1,[http/1.1]}{0.0.0.0:6000}
+INFO  [2017-02-22 04:51:59,556] org.eclipse.jetty.server.AbstractConnector: Started admin@611df6e3{HTTP/1.1,[http/1.1]}{0.0.0.0:6001}
+INFO  [2017-02-22 04:51:59,562] org.eclipse.jetty.server.Server: Started @1896ms
+INFO  [2017-02-22 05:06:21,958] org.eclipse.jetty.server.AbstractConnector: Stopped application@4e76dac{HTTP/1.1,[http/1.1]}{0.0.0.0:6000}
+INFO  [2017-02-22 05:06:21,965] org.eclipse.jetty.server.AbstractConnector: Stopped admin@611df6e3{HTTP/1.1,[http/1.1]}{0.0.0.0:6001}
+INFO  [2017-02-22 05:06:21,969] org.eclipse.jetty.server.handler.ContextHandler: Stopped i.d.j.MutableServletContextHandler@4eb30d44{/,null,UNAVAILABLE}
+INFO  [2017-02-22 05:06:21,976] org.eclipse.jetty.server.handler.ContextHandler: Stopped i.d.j.MutableServletContextHandler@53ac845a{/,null,UNAVAILABLE}
+INFO  [2017-02-22 05:08:43,951] org.eclipse.jetty.util.log: Logging initialized @1086ms
+INFO  [2017-02-22 05:08:44,036] io.dropwizard.server.DefaultServerFactory: Registering jersey handler with root path prefix: /
+INFO  [2017-02-22 05:08:44,036] io.dropwizard.server.DefaultServerFactory: Registering admin handler with root path prefix: /
+INFO  [2017-02-22 05:08:44,036] com.wso2telco.tip.balance.conf.ApplicationInitializer: Registering REST resources
+INFO  [2017-02-22 05:08:44,036] com.wso2telco.tip.balance.conf.ApplicationInitializer: Initializing Config
+INFO  [2017-02-22 05:08:44,040] io.dropwizard.server.DefaultServerFactory: Registering jersey handler with root path prefix: /
+INFO  [2017-02-22 05:08:44,040] io.dropwizard.server.DefaultServerFactory: Registering admin handler with root path prefix: /
+INFO  [2017-02-22 05:08:44,041] io.dropwizard.server.ServerFactory: Starting ApplicationInitializer
+INFO  [2017-02-22 05:08:44,166] org.eclipse.jetty.setuid.SetUIDListener: Opened application@4e76dac{HTTP/1.1,[http/1.1]}{0.0.0.0:6000}
+INFO  [2017-02-22 05:08:44,166] org.eclipse.jetty.setuid.SetUIDListener: Opened admin@611df6e3{HTTP/1.1,[http/1.1]}{0.0.0.0:6001}
+INFO  [2017-02-22 05:08:44,168] org.eclipse.jetty.server.Server: jetty-9.3.z-SNAPSHOT
+INFO  [2017-02-22 05:08:44,612] io.dropwizard.jersey.DropwizardResourceConfig: The following paths were found for the configured resources:
+
+    GET     /balance/version (com.wso2telco.tip.balance.api.Endpoints)
+    GET     /balance/{msisdn} (com.wso2telco.tip.balance.api.Endpoints)
+
+INFO  [2017-02-22 05:08:44,614] org.eclipse.jetty.server.handler.ContextHandler: Started i.d.j.MutableServletContextHandler@53ac845a{/,null,AVAILABLE}
+INFO  [2017-02-22 05:08:44,619] io.dropwizard.setup.AdminEnvironment: tasks = 
+
+    POST    /tasks/log-level (io.dropwizard.servlets.tasks.LogConfigurationTask)
+    POST    /tasks/gc (io.dropwizard.servlets.tasks.GarbageCollectionTask)
+
+WARN  [2017-02-22 05:08:44,620] io.dropwizard.setup.AdminEnvironment: 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!    THIS APPLICATION HAS NO HEALTHCHECKS. THIS MEANS YOU WILL NEVER KNOW      !
+!     IF IT DIES IN PRODUCTION, WHICH MEANS YOU WILL NEVER KNOW IF YOU'RE      !
+!    LETTING YOUR USERS DOWN. YOU SHOULD ADD A HEALTHCHECK FOR EACH OF YOUR    !
+!         APPLICATION'S DEPENDENCIES WHICH FULLY (BUT LIGHTLY) TESTS IT.       !
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+INFO  [2017-02-22 05:08:44,624] org.eclipse.jetty.server.handler.ContextHandler: Started i.d.j.MutableServletContextHandler@4eb30d44{/,null,AVAILABLE}
+INFO  [2017-02-22 05:08:44,633] org.eclipse.jetty.server.AbstractConnector: Started application@4e76dac{HTTP/1.1,[http/1.1]}{0.0.0.0:6000}
+INFO  [2017-02-22 05:08:44,633] org.eclipse.jetty.server.AbstractConnector: Started admin@611df6e3{HTTP/1.1,[http/1.1]}{0.0.0.0:6001}
+INFO  [2017-02-22 05:08:44,634] org.eclipse.jetty.server.Server: Started @1769ms
+INFO  [2017-02-22 05:18:55,869] org.eclipse.jetty.server.AbstractConnector: Stopped application@4e76dac{HTTP/1.1,[http/1.1]}{0.0.0.0:6000}
+INFO  [2017-02-22 05:18:55,874] org.eclipse.jetty.server.AbstractConnector: Stopped admin@611df6e3{HTTP/1.1,[http/1.1]}{0.0.0.0:6001}
+INFO  [2017-02-22 05:18:55,877] org.eclipse.jetty.server.handler.ContextHandler: Stopped i.d.j.MutableServletContextHandler@4eb30d44{/,null,UNAVAILABLE}
+INFO  [2017-02-22 05:18:55,883] org.eclipse.jetty.server.handler.ContextHandler: Stopped i.d.j.MutableServletContextHandler@53ac845a{/,null,UNAVAILABLE}
+INFO  [2017-02-22 05:26:15,057] org.eclipse.jetty.util.log: Logging initialized @1109ms
+INFO  [2017-02-22 05:26:15,158] io.dropwizard.server.DefaultServerFactory: Registering jersey handler with root path prefix: /
+INFO  [2017-02-22 05:26:15,158] io.dropwizard.server.DefaultServerFactory: Registering admin handler with root path prefix: /
+INFO  [2017-02-22 05:26:15,158] com.wso2telco.tip.balance.conf.ApplicationInitializer: Registering REST resources
+INFO  [2017-02-22 05:26:15,158] com.wso2telco.tip.balance.conf.ApplicationInitializer: Initializing Config
+INFO  [2017-02-22 05:26:15,164] io.dropwizard.server.DefaultServerFactory: Registering jersey handler with root path prefix: /
+INFO  [2017-02-22 05:26:15,164] io.dropwizard.server.DefaultServerFactory: Registering admin handler with root path prefix: /
+INFO  [2017-02-22 05:26:15,166] io.dropwizard.server.ServerFactory: Starting ApplicationInitializer
+INFO  [2017-02-22 05:26:15,318] org.eclipse.jetty.setuid.SetUIDListener: Opened application@4e76dac{HTTP/1.1,[http/1.1]}{0.0.0.0:6005}
+INFO  [2017-02-22 05:26:15,319] org.eclipse.jetty.setuid.SetUIDListener: Opened admin@611df6e3{HTTP/1.1,[http/1.1]}{0.0.0.0:6001}
+INFO  [2017-02-22 05:26:15,320] org.eclipse.jetty.server.Server: jetty-9.3.z-SNAPSHOT
+INFO  [2017-02-22 05:26:15,835] io.dropwizard.jersey.DropwizardResourceConfig: The following paths were found for the configured resources:
+
+    GET     /balance/version (com.wso2telco.tip.balance.api.Endpoints)
+    GET     /balance/{msisdn} (com.wso2telco.tip.balance.api.Endpoints)
+
+INFO  [2017-02-22 05:26:15,838] org.eclipse.jetty.server.handler.ContextHandler: Started i.d.j.MutableServletContextHandler@53ac845a{/,null,AVAILABLE}
+INFO  [2017-02-22 05:26:15,843] io.dropwizard.setup.AdminEnvironment: tasks = 
+
+    POST    /tasks/log-level (io.dropwizard.servlets.tasks.LogConfigurationTask)
+    POST    /tasks/gc (io.dropwizard.servlets.tasks.GarbageCollectionTask)
+
+WARN  [2017-02-22 05:26:15,844] io.dropwizard.setup.AdminEnvironment: 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!    THIS APPLICATION HAS NO HEALTHCHECKS. THIS MEANS YOU WILL NEVER KNOW      !
+!     IF IT DIES IN PRODUCTION, WHICH MEANS YOU WILL NEVER KNOW IF YOU'RE      !
+!    LETTING YOUR USERS DOWN. YOU SHOULD ADD A HEALTHCHECK FOR EACH OF YOUR    !
+!         APPLICATION'S DEPENDENCIES WHICH FULLY (BUT LIGHTLY) TESTS IT.       !
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+INFO  [2017-02-22 05:26:15,851] org.eclipse.jetty.server.handler.ContextHandler: Started i.d.j.MutableServletContextHandler@4eb30d44{/,null,AVAILABLE}
+INFO  [2017-02-22 05:26:15,859] org.eclipse.jetty.server.AbstractConnector: Started application@4e76dac{HTTP/1.1,[http/1.1]}{0.0.0.0:6005}
+INFO  [2017-02-22 05:26:15,859] org.eclipse.jetty.server.AbstractConnector: Started admin@611df6e3{HTTP/1.1,[http/1.1]}{0.0.0.0:6001}
+INFO  [2017-02-22 05:26:15,860] org.eclipse.jetty.server.Server: Started @1913ms
+INFO  [2017-02-22 05:26:35,383] com.wso2telco.tip.balance.api.Endpoints: version endpoint invoked
+INFO  [2017-02-22 05:26:38,034] com.wso2telco.tip.balance.api.Endpoints: version endpoint invoked
+INFO  [2017-02-22 05:26:42,429] com.wso2telco.tip.balance.api.Endpoints: get balance for the msisdn : 2222
+INFO  [2017-02-22 05:26:42,430] com.wso2telco.tip.balance.api.Endpoints: msisdn format error : 2222
+INFO  [2017-02-22 05:26:58,232] org.eclipse.jetty.server.AbstractConnector: Stopped application@4e76dac{HTTP/1.1,[http/1.1]}{0.0.0.0:6005}
+INFO  [2017-02-22 05:26:58,236] org.eclipse.jetty.server.AbstractConnector: Stopped admin@611df6e3{HTTP/1.1,[http/1.1]}{0.0.0.0:6001}
+INFO  [2017-02-22 05:26:58,239] org.eclipse.jetty.server.handler.ContextHandler: Stopped i.d.j.MutableServletContextHandler@4eb30d44{/,null,UNAVAILABLE}
+INFO  [2017-02-22 05:26:58,248] org.eclipse.jetty.server.handler.ContextHandler: Stopped i.d.j.MutableServletContextHandler@53ac845a{/,null,UNAVAILABLE}

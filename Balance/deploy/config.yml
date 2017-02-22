@@ -1,0 +1,40 @@
+server:
+        applicationConnectors:
+          - type: http
+                # The port the application will listen on
+            port: 6005
+            bindHost: 0.0.0.0
+        adminConnectors:
+          - type: http
+                # The admin port
+            port: 6006
+            
+logging:
+  level: INFO
+  loggers:
+    io.dropwizard: INFO
+    com.wso2telco: DEBUG
+  appenders:
+    - type: console
+      threshold: ALL
+      timeZone: UTC
+      target: stdout
+# Enable following for file appender
+    - type: file
+      currentLogFilename: logs/balance.log #<path to log file>/<filename.log>
+      threshold: ALL
+      archive: true
+      archivedLogFilenamePattern: logs/balance-%d.log #<path to log file >/< archive filename.log>
+      archivedFileCount: 5
+      timeZone: UTC
+
+redis:
+  port: 6379
+  host: localhost
+  password: cY4L3dBf@mifenew
+  timeout: 2000
+  poolsize: 200
+
+remote:
+  isEnabled: true
+  url: http://10.62.160.161:9445/balanceCheck/{msisdn}

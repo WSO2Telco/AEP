@@ -1,7 +1,7 @@
 package com.wso2telco.tip.balance.api;
 
 import com.wso2telco.tip.balance.exception.ErrorCodes;
-import com.wso2telco.tip.balance.invoke.Invoke;
+import com.wso2telco.tip.balance.client.Invoke;
 import com.wso2telco.tip.balance.util.Validator;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -18,7 +18,7 @@ import javax.ws.rs.core.Response;
  * Created by yasith on 2/21/17.
  */
 
-@Path("/")
+@Path("/balance")
 public class Endpoints {
 
     private Log log = LogFactory.getLog(Endpoints.class);
@@ -33,7 +33,6 @@ public class Endpoints {
     @GET
     @Path("{msisdn}")
     public Response getBalance(@PathParam("msisdn") String msisdn){
-        BasicConfigurator.configure();
         if(log.isInfoEnabled())
             log.info("get balance for the msisdn : " + msisdn);
 

@@ -1,6 +1,6 @@
-package com.wso2telco.tip.balance.invoke;
+package com.wso2telco.tip.balance.client;
 
-import com.wso2telco.tip.balance.conf.ResourceLoader;
+import com.wso2telco.tip.balance.conf.ConfigReader;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.http.HttpResponse;
@@ -8,15 +8,11 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
-import org.apache.log4j.ConsoleAppender;
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
-import org.apache.log4j.PatternLayout;
 import org.json.JSONObject;
 
 import javax.ws.rs.core.UriBuilder;
-import java.io.IOException;
 import java.net.URI;
+import java.util.Map;
 
 /**
  * Created by yasith on 2/21/17.
@@ -25,10 +21,17 @@ public class Invoke {
 
     private Log log = LogFactory.getLog(Invoke.class);
 
+    String url = null;
+
+    public Invoke(){
+        ConfigReader configReader = ConfigReader.getInstance();
+        Map<Object,Object> dialog = (Map<Object, Object>) configReader.getApplicationConfiguration().getRemote();
+        url = (String) dialog.get("url");
+    }
+
     public JSONObject sendGet(String msisdn) throws Exception {
 
-        String remoteURL = ResourceLoader.getRemoteUrl();
-        UriBuilder builder = UriBuilder.fromPath(remoteURL);
+        UriBuilder builder = UriBuilder.fromPath(url);
         URI callUrl = builder.build(msisdn);
         HttpClient client = HttpClientBuilder.create().build();
         HttpGet request = new HttpGet(callUrl);
