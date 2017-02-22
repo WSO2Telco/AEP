@@ -46,7 +46,7 @@ public class Invoke {
         String parsedResponse = responseString.substring(1,responseString.length()-1);
         if(log.isInfoEnabled())
             log.info("response String : " + parsedResponse);
-        jsonResponse = new JSONObject();
+        jsonResponse = new JSONObject(parsedResponse);
         if(log.isInfoEnabled()){
             log.info("Response Code : " + response.getStatusLine().getStatusCode());
             log.info("JSON Response : " + jsonResponse.toString());
