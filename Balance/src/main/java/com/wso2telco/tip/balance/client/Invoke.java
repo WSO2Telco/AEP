@@ -36,7 +36,7 @@ public class Invoke {
         if(isRemoteEnabled){
             if(log.isInfoEnabled())
                 log.info("remote enabled, invoking the operator api");
-            return sendGet(msisdn);
+            return sendGet(msisdn.substring(2));
         }else{
             if(log.isInfoEnabled())
                 log.info("remote disabled, invoking the dummy api");

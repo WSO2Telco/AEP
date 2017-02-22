@@ -53,7 +53,7 @@ public class Endpoints {
         Invoke invoke = new Invoke();
         JSONObject requestJson = null;
         try {
-            requestJson = invoke.getBalance(msisdn.substring(2));
+            requestJson = invoke.getBalance(msisdn);
         } catch (Exception e) {
             log.error("Error Occured for the msisdn : " + msisdn, e);
             requestJson = new JSONObject();
