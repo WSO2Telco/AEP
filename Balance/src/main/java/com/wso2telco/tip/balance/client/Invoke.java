@@ -1,6 +1,7 @@
 package com.wso2telco.tip.balance.client;
 
 import com.wso2telco.tip.balance.conf.ConfigReader;
+import com.wso2telco.tip.balance.publish.DataPublisher;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.http.HttpResponse;
@@ -22,11 +23,40 @@ public class Invoke {
     private Log log = LogFactory.getLog(Invoke.class);
 
     String url = null;
+    boolean isRemoteEnabled=true;
 
     public Invoke(){
         ConfigReader configReader = ConfigReader.getInstance();
-        Map<Object,Object> dialog = (Map<Object, Object>) configReader.getApplicationConfiguration().getRemote();
-        url = (String) dialog.get("url");
+        Map<Object,Object> remote = (Map<Object, Object>) configReader.getApplicationConfiguration().getRemote();
+        url = (String) remote.get("url");
+        isRemoteEnabled = Boolean.parseBoolean((String) remote.get("isEnabled"));
+    }
+
+    public JSONObject getBalance(String msisdn) throws Exception {
+        if(isRemoteEnabled){
+            if(log.isInfoEnabled())
+                log.info("remote enabled, invoking the operator api");
+            return sendGet(msisdn);
+        }else{
+            if(log.isInfoEnabled())
+                log.info("remote disabled, invoking the dummy api");
+            String jsonString = "{\"accountInfo\":{\"accountStatus\":\"ACTIVE\",\"balance\":[amount],\"accountType\":\"POSTPAID\",\"creditLimit\":[amount]},\"endUserId\":\"[msisdn]\",\"referenceCode\":\"dummyAPI\"}";
+            DataPublisher dataPublisher = new DataPublisher();
+            String amount = dataPublisher.getAmount(msisdn);
+            if(amount == null || amount.isEmpty()){
+                if(log.isInfoEnabled())
+                    log.info("msisdn not found on the dummy dataset, creating new entry with default amount");
+                dataPublisher.publishData(msisdn,"100.00");
+                amount = "100.00";
+            }
+
+            jsonString = jsonString.replace("[amount]",amount).replace("[msisdn]",msisdn);
+            if(log.isInfoEnabled())
+                log.info("json String for dummy api: " + jsonString);
+
+            JSONObject jsonResponse = new JSONObject(jsonString);
+            return jsonResponse;
+        }
     }
 
     public JSONObject sendGet(String msisdn) throws Exception {

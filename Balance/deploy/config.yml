@@ -36,5 +36,5 @@ redis:
   poolsize: 200
 
 remote:
-  isEnabled: true
+  isEnabled: false
   url: http://10.62.160.161:9445/balanceCheck/{msisdn}

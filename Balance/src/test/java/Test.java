@@ -1,3 +1,6 @@
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import org.json.JSONObject;
 
 /**
@@ -17,5 +20,36 @@ public class Test {
         System.out.println(msisdn.substring(2));
 
         System.out.println(jsonResponse.toString());
+    }
+
+
+    @org.junit.Test
+    public void testJson(){
+        String jsonResponse = "{\"accountInfo\":{\"accountStatus\":\"ACTIVE\",\"balance\":[amount],\"accountType\":\"POSTPAID\",\"creditLimit\":[amount]},\"endUserId\":\"[msisdn]\",\"referenceCode\":\"dummy\"}";
+
+        jsonResponse = jsonResponse.replace("[amount]","500").replace("[msisdn]","94771353682");
+
+        System.out.println(jsonResponse);
+    }
+
+    @org.junit.Test
+    public void amountTest(){
+        String amount = "120.45";
+        double amountvalue = Double.parseDouble(amount);
+        System.out.println(amountvalue);
+
+
+        String jsonBody = "{\"msisdn\":\"94771353682\",\"rechargeAmount\":105.25}";
+        JsonParser parser = new JsonParser();
+        JsonObject jsonObject = parser.parse(jsonBody).getAsJsonObject();
+
+        JsonElement msisdnElement = jsonObject.get("msisdn");
+        JsonElement rechargeAmountElement = jsonObject.get("rechargeAmount");
+
+        String msisdn = msisdnElement.getAsString();
+        double rechargeAmount = rechargeAmountElement.getAsDouble();
+
+        System.out.println(msisdn);
+        System.out.println(rechargeAmount);
     }
 }
