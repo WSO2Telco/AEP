@@ -43,9 +43,10 @@ public class Invoke {
         JSONObject jsonResponse;
         response = client.execute(request);
         String responseString = EntityUtils.toString(response.getEntity());
+        String parsedResponse = responseString.substring(1,responseString.length()-1);
         if(log.isInfoEnabled())
-            log.info("response String : " + responseString);
-        jsonResponse = new JSONObject(responseString.substring(1,responseString.length()-1));
+            log.info("response String : " + parsedResponse);
+        jsonResponse = new JSONObject();
         if(log.isInfoEnabled()){
             log.info("Response Code : " + response.getStatusLine().getStatusCode());
             log.info("JSON Response : " + jsonResponse.toString());
