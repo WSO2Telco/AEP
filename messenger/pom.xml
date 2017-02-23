@@ -23,10 +23,28 @@
             <artifactId>dropwizard-swagger</artifactId>
             <version>${dropwizard.swagger.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>${httpclient.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>${json.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>RELEASE</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
     <properties>
+        <json.version>20160810</json.version>
         <dropwizard.swagger.version>0.6</dropwizard.swagger.version>
         <dropwizard.version>1.0.5</dropwizard.version>
+        <httpclient.version>4.5.2</httpclient.version>
     </properties>
     <build>
         <finalName>messenger</finalName>
