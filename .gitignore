@@ -33,3 +33,14 @@ node_modules
 /npm-debug.log
 npm-debug.log
 /bundle/
+
+
+*.iml
+.gradle
+/local.properties
+/.idea/workspace.xml
+/.idea/libraries
+.DS_Store
+/build
+/captures
+.externalNativeBuild
