@@ -18,6 +18,8 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Response;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 /**
  * Created by yasith on 2/21/17.
@@ -108,7 +110,7 @@ public class Endpoints {
 
             double existingBalanceValue = Double.parseDouble(existingBalance);
             double newAmount = existingBalanceValue + rechargeAmount;
-
+            newAmount = round(newAmount);
             if(log.isInfoEnabled())
                 log.info("new amount : " + newAmount);
             dataPublisher.publishData(msisdn,String.valueOf(newAmount));
@@ -122,5 +124,11 @@ public class Endpoints {
             return Response.status(HttpServletResponse.SC_INTERNAL_SERVER_ERROR).header("Content-Type", "application/json").entity(requestJson.toString()).build();
         }
         return Response.status(HttpServletResponse.SC_OK).header("Content-Type", "application/json").entity(jsonObjectBalance.toString()).build();
+    }
+
+    private static double round(double value) {
+        BigDecimal bd = new BigDecimal(value);
+        bd = bd.setScale(2, RoundingMode.HALF_UP);
+        return bd.doubleValue();
     }
 }

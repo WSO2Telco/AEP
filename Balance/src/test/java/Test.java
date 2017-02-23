@@ -3,6 +3,9 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.json.JSONObject;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 /**
  * Created by yasith on 2/21/17.
  */
@@ -51,5 +54,17 @@ public class Test {
 
         System.out.println(msisdn);
         System.out.println(rechargeAmount);
+    }
+
+
+    @org.junit.Test
+    public void doubleTest(){
+        System.out.println(round(2.06601101));
+    }
+
+    private static double round(double value) {
+        BigDecimal bd = new BigDecimal(value);
+        bd = bd.setScale(2, RoundingMode.HALF_UP);
+        return bd.doubleValue();
     }
 }
