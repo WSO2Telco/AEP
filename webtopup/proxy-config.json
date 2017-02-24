@@ -1,0 +1,8 @@
+{
+  "/backend":{
+    "target" : "http://209.249.227.63:8280/",
+    "secure":false,
+    "pathRewrite" : {"^/backend":""},
+    "logLevel" : "info"
+  }
+}

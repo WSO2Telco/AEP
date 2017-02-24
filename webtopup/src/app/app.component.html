@@ -1,0 +1,47 @@
+<div class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12"></div>
+    </div>
+  </div>
+</div>
+<div class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4"></div>
+      <div class="col-md-4 form">
+        <form role="form">
+          <div class="form-group">
+            <label class="control-label" for="inputMsisdn">MSISDN</label>
+            <input #msisdn class="form-control" id="inputMsisdn" placeholder="94xxxxxxxxx"
+                   type="number">
+          </div>
+          <div class="form-group">
+            <label class="control-label" for="inputAmount">Amount</label>
+            <input #amount class="form-control" id="inputAmount" placeholder="200.00"
+                   type="text">
+          </div>
+          <button type="button" (click)="onTopUp(msisdn.value,amount.value)" class="btn btn-default">TOPUP</button>
+        </form>
+      </div>
+      <div class="col-md-4"></div>
+    </div>
+  </div>
+</div>
+<div class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12"></div>
+    </div>
+  </div>
+</div>
+
+<div class="row"  *ngIf="result && !isError">
+  <div class="col-sm-2">Current Balance : {{result?.accountInfo?.balance}}</div>
+</div>
+
+<div class="row" *ngIf="isError">
+  <div class="col-sm-2">Error : </div><div class="col-sm-3">{{result|json}}</div>
+</div>
+
+
