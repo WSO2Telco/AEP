@@ -6,12 +6,7 @@
   "engines": {
     "node": "6.9.1"
   },
-  "scripts": {
-    "start": "ng build && ng serve",
-    "lint": "tslint \"src/**/*.ts\"",
-    "test": "ng test",
-    "pree2e": "webdriver-manager update",
-    "e2e": "protractor",
+  "scripts": {   
     "preinstall": "npm install -g angular-cli"
   },
   "private": true,

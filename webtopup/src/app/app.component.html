@@ -37,11 +37,11 @@
 </div>
 
 <div class="row"  *ngIf="result && !isError">
-  <div class="col-sm-2">Current Balance : {{result?.accountInfo?.balance}}</div>
+  <div class="col-sm-12 text-center">Current Balance : {{result?.accountInfo?.balance}}</div>
 </div>
 
 <div class="row" *ngIf="isError">
-  <div class="col-sm-2">Error : </div><div class="col-sm-3">{{result|json}}</div>
+  <div class="col-sm-12 text-center">Error : {{result|json}}</div>
 </div>
 
 
