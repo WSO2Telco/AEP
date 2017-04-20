@@ -4,7 +4,7 @@ Artifacts for the Facebook TIP Application Enablement Platform
 
 ## Deployment Architecture
 
-![deployment architecture](https://github.com/WSO2Telco/AEP/tree/master/images/FB-TIP_Deployment_Architecture.jpg "deployment architecture")
+![deployment architecture](https://raw.githubusercontent.com/WSO2Telco/AEP/master/images/FB-TIP_Deployment_Architecture.jpg "deployment architecture")
 
 ## Internal Gateway
 
