@@ -4,10 +4,14 @@ Artifacts for the Facebook TIP Application Enablement Platform
 
 ## Deployment Architecture
 
-https://docs.google.com/a/wso2telco.com/presentation/d/1ajtAmyJnRt7HWOqBIRQtmdSYfjRj27Our_dAV-uKkrM/edit?usp=sharing
+![deployment architecture](https://github.com/WSO2Telco/AEP/tree/master/images/FB-TIP_Deployment_Architecture.jpg "deployment architecture")
 
 ## Internal Gateway
 
 Download WSO2.Telco Internal Gateway Binaries from here:
 
 http://wso2telco.com/gateways/internal-gateway
+
+## Blog
+
+https://telecominfraproject.com/a-tip-update-from-mwc-2017/
